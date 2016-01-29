@@ -1,5 +1,5 @@
 <?php
-echo "hello";
+
 echo '<script>alert(1);</script>';
 
 	session_start();
