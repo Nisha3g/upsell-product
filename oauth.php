@@ -3,6 +3,7 @@
 echo '<script>alert(1);</script>';
 
 	session_start();
+	
 
 	require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
