@@ -6,10 +6,11 @@
 
 	require __DIR__.'/conf.php';
 
-	$shopify = shopify\client($_SESSION['shop'], SHOPIFY_APP_API_KEY, $_SESSION['oauth_token']);
+	echo 'helloooooooooo'.$shopify = shopify\client($_SESSION['shop'], SHOPIFY_APP_API_KEY, $_SESSION['oauth_token']);
 
 	try
 	{
+		alert(1);
 		# Making an API request can throw an exception
 		$products = $shopify('GET /admin/products.json', array('published_status'=>'published'));
 		print_r($products);
