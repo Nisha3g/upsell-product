@@ -6,7 +6,7 @@
 
 	require __DIR__.'/conf.php';
 
-	echo 'helloooooooooo'.$shopify = shopify\client($_SESSION['shop'], SHOPIFY_APP_API_KEY, $_SESSION['oauth_token']);
+	echo $shopify = shopify\client($_SESSION['shop'], SHOPIFY_APP_API_KEY, $_SESSION['oauth_token']);
 
 	try
 	{
