@@ -1,3 +1,5 @@
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<?php	require __DIR__.'/style.css'; ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 
