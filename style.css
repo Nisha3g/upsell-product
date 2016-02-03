@@ -1,13 +1,13 @@
 <style>
 .maintable{}
-.pcount{}
+.pcount{width:10%;}
 .pid{}
 .pedit{}
 .ptitle{}
 .pitem{ border-style: none solid solid;
     border-width: medium 1px 1px;
     float: left;
-    padding: 5px 0;
+    padding: 5px;
     width: 20%;}
 
 </style>
