@@ -6,13 +6,25 @@
 	 $oauth_token = shopify\access_token($_GET['shop'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET, $_GET['code']);
 	//	    $shopify = shopify\client($_SESSION['shop'], $_SESSION['oauth_token'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET);
 	 $shopify = shopify\client($_GET['shop'], SHOPIFY_APP_API_KEY,$oauth_token);
-         print_r($shopify);
-     	try
+   	try
 	{
 		//echo "<script>alert(1)</script>";
 		# Making an API request can throw an exception
 		$products = $shopify('GET /admin/products.json', array('published_status'=>'published'));
-		print_r($products);
+		?>
+		<div class="maintable">
+		<?php 
+		$count=1;
+		foreach($products as $product){?>
+			<div class="pcount"><?php echo $count; ?></div>
+			<div class="pid"><?php echo $product['id']; ?></div>
+			<div class="ptitle"><?php echo $product['title']; ?></div>
+			<div class="pedit"><a href="edit_product.php?id=<?php echo $product['id']; ?>">EDIT</a></div>
+			
+		<?php	}	?>
+			
+		</div>
+		<?php
 	}
 	catch (shopify\ApiException $e)
 	{
