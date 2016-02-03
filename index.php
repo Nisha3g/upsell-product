@@ -15,10 +15,10 @@
 		?>
 		<div class="maintable">
 		<h1>PRODUCTS</h1>
-		<div class="pitem pcount" style="border-top:1px solid;">S.No.</div>
-			<div class="pid pitem" style="border-top:1px solid;">Product ID</div>
-			<div class="ptitle pitem" style="border-top:1px solid;">Product Name</div>
-			<div class="pedit pitem" style="border-top:1px solid;">Action</div>
+		<div class="pitem pcount" style="border-top:1px solid;"><b>S.No.</b></div>
+			<div class="pid pitem" style="border-top:1px solid;"><b>Product ID</b></div>
+			<div class="ptitle pitem" style="border-top:1px solid;"><b>Product Name</b></div>
+			<div class="pedit pitem" style="border-top:1px solid;"><b>Action</b></div>
 			<div style="clear:both" style="border-top:1px solid;"></div>
 		<?php 
 		$count=1;
