@@ -44,7 +44,7 @@
 <label>Upsell Product IDs(Seprated by ",")</label>
 <textarea name="upsell_product_id1" class="upsell_product_id"></textarea><br/>
 <div class="addnew"></div>				
-<input type="button" id="add_new_page" value="Add New Page" />	
+<input type="button" id="add_new_country" value="Add New Country" />	
 <input type="submit" name="submit" value="Save"/>
 </form>
 <script>
