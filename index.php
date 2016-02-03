@@ -15,15 +15,15 @@
 		?>
 		<div class="maintable">
 		<h1>PRODUCTS</h1>
-		<div class="pcount pitem">S.No.</div>
-			<div class="pid pitem">Product ID</div>
-			<div class="ptitle pitem">Product Name</div>
-			<div class="pedit pitem">Action</div>
-			<div style="clear:both"></div>
+		<div class="pitem pcount" style="border-top:1px solid;">S.No.</div>
+			<div class="pid pitem" style="border-top:1px solid;">Product ID</div>
+			<div class="ptitle pitem" style="border-top:1px solid;">Product Name</div>
+			<div class="pedit pitem" style="border-top:1px solid;">Action</div>
+			<div style="clear:both" style="border-top:1px solid;"></div>
 		<?php 
 		$count=1;
 		foreach($products as $product){?>
-			<div class="pcount pitem"><?php echo $count; ?></div>
+			<div class="pitem pcount"><?php echo $count; ?></div>
 			<div class="pid pitem"><?php echo $product['id']; ?></div>
 			<div class="ptitle pitem"><?php echo $product['title']; ?></div>
 			<div class="pedit pitem"><a href="edit_product.php?id=<?php echo $product['id']; ?>">EDIT</a></div>
