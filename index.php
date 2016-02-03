@@ -3,13 +3,10 @@
 	require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
 	require __DIR__.'/conf.php';
-	   print_r($_GET);
-	$oauth_token = shopify\access_token($_GET['shop'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET, $_GET['code']);
+	 $oauth_token = shopify\access_token($_GET['shop'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET, $_GET['code']);
 		$_SESSION['oauth_token'] = $oauth_token;
 		$_SESSION['shop'] = $_GET['shop'];
-	
-	      print_r($_SESSION);
-	    $shopify = shopify_api_client($_SESSION['shop'], $_SESSION['oauth_token'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET);
+		    $shopify = shopify\client($_SESSION['shop'], $_SESSION['oauth_token'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET);
 	// $shopify = shopify\client($_SESSION['shop'], SHOPIFY_APP_API_KEY, $_SESSION['oauth_token']);
          print_r($shopify);
 	try
