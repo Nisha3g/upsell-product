@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 print_r($_GET);
 ?>
 <h1>EDIT PRODUCT</h1>
