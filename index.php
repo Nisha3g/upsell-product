@@ -19,6 +19,7 @@
 			<div class="pid pitem">Product ID</div>
 			<div class="ptitle pitem">Product Name</div>
 			<div class="pedit pitem">Action</div>
+			<div style="clear:both"></div>
 		<?php 
 		$count=1;
 		foreach($products as $product){?>
@@ -26,7 +27,7 @@
 			<div class="pid pitem"><?php echo $product['id']; ?></div>
 			<div class="ptitle pitem"><?php echo $product['title']; ?></div>
 			<div class="pedit pitem"><a href="edit_product.php?id=<?php echo $product['id']; ?>">EDIT</a></div>
-			
+			<div style="clear:both"></div>
 		<?php	}	?>
 			
 		</div>
