@@ -4,6 +4,10 @@
 .pid{}
 .pedit{}
 .ptitle{}
-.pitem{float:left;}
+.pitem{ border-style: none solid solid;
+    border-width: medium 1px 1px;
+    float: left;
+    padding: 5px 0;
+    width: 20%;}
 
 </style>
