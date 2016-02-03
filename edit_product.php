@@ -1,6 +1,7 @@
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<?php	require __DIR__.'/style.css'; ?>
+<?php	require __DIR__.'/conf.php'; 
+require __DIR__.'/style.css'; ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 
