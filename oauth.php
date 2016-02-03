@@ -1,7 +1,4 @@
 <?php
-
-echo '<script>alert(1);</script>';
-
 	session_start();
 	
 
@@ -19,7 +16,7 @@ echo '<script>alert(1);</script>';
 	{
 		$permission_url = shopify\authorization_url($_GET['shop'], SHOPIFY_APP_API_KEY, array('read_content', 'write_content', 'read_themes', 'write_themes', 'read_products', 'write_products', 'read_customers', 'write_customers', 'read_orders', 'write_orders', 'read_script_tags', 'write_script_tags', 'read_fulfillments', 'write_fulfillments', 'read_shipping', 'write_shipping'),'https://upsell-product.herokuapp.com');
 	
-		die("<script> top.location.href='$permission_url'</script>");
+		die("<script> window.location.href='$permission_url'</script>");
 	}
 
 
