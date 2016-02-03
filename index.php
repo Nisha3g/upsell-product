@@ -4,6 +4,7 @@
 	use phpish\shopify;
 	require __DIR__.'/conf.php';
 	require __DIR__.'/style.css';
+	print_r($_SESSION);
 	if(!isset($_SESSION['auth_token'])){
 	 $oauth_token = shopify\access_token($_GET['shop'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET, $_GET['code']);
 	 $_SESSION['auth_token']=$oauth_token;
