@@ -13,6 +13,11 @@
 		$products = $shopify('GET /admin/products.json', array('published_status'=>'published'));
 		?>
 		<div class="maintable">
+		<h1>PRODUCTS</h1>
+		<div class="pcount">S.No.</div>
+			<div class="pid">Product ID</div>
+			<div class="ptitle">Product Name</div>
+			<div class="pedit">Action</div>
 		<?php 
 		$count=1;
 		foreach($products as $product){?>
