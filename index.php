@@ -19,12 +19,13 @@
 	$db = pg_connect( "$host $port $dbname $credentials"  );
 		  $select_store = pg_query($db,"SELECT * from app_shop_data where shop_url=".$_GET['shop']); //check if the store exists
   		 if($select_store->pg_num_rows > 0){
-					   $sql = "UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']";
-					 pg_query($db,"UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']");
+			 echo "dfdsd";
+					  /*  $sql = "UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']";
+					 pg_query($db,"UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']"); */
 			 }
-		else{
-		 	pg_query($db,"INSERT INTO tbl_usersettings SET access_token = $_GET['shop'], shop_url = $oauth_token ");			
-		}
+		else{echo "asd";
+		 /* 	pg_query($db,"INSERT INTO tbl_usersettings SET access_token = $_GET['shop'], shop_url = $oauth_token ");			
+		*/} 
 	}
 	 $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
    	try
