@@ -6,8 +6,15 @@ class DB {
 	
   	public function __construct()
     {
+		$host = "host=ec2-54-225-199-245.compute-1.amazonaws.com";
+	$port = "port=5432";
+	$dbname = "dbname=dbddrf8jsndbge";
+	$user="sousqigydxxmjh";
+	$password="KJBXNEMK8Vcyyf5FgIJK6yfygO";
+	$credentials = "user=sousqigydxxmjh password=KJBXNEMK8Vcyyf5FgIJK6yfygO";
+	$db = pg_connect( "$host $port $dbname $credentials"  );
         //create db connection
-        $this->driver = new PDO('pgsql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';', DB_USER, DB_PASSWORD);
+        $this->driver = new PDO('pgsql:host=' . $host . ';dbname=' . $dbname . ';', $user, $password);
   		//$this->driver = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 		
         //set character set
