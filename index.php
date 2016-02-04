@@ -23,9 +23,9 @@
 					  /*  $sql = "UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']";
 					 pg_query($db,"UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']"); */
 			 }
-		else{echo "asd";
-		 /* 	pg_query($db,"INSERT INTO tbl_usersettings SET access_token = $_GET['shop'], shop_url = $oauth_token ");			
-		*/} 
+		else{
+			pg_query($db,"INSERT INTO tbl_usersettings SET access_token = $_GET['shop'], shop_url = $oauth_token ");	echo "asd";		
+		} 
 	}
 	 $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
    	try
