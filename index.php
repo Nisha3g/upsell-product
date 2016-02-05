@@ -28,7 +28,7 @@
 		echo	$sql = "UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'";
 			pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'"); 
 			/* echo "INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$_GET['shop']."','".$oauth_token."')"; */
-			/* pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$_GET['shop']."','".$oauth_token."')");  */
+			pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$oauth_token."','".$_GET['shop']."')");  
 			/* pg_query($db,"INSERT INTO app_shop_data SET  = $_GET['shop'],  = $oauth_token "); */	echo "asd";		
 		} 
 	}
