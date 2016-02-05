@@ -1,11 +1,19 @@
-
+<?php session_start();
+print_r($_SESSION);
+if(isset($_REQUEST['submit'])){
+	echo "sdasd";
+	
+}else{
+	echo "assasa";
+}
+ ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <?php	require __DIR__.'/conf.php'; 
 require __DIR__.'/style.css'; ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 
-<form>
+<form method="POST">
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" /><br/>
 <label>Upsell Show</label>
