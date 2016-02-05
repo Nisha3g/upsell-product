@@ -1,10 +1,14 @@
 <?php session_start();
 print_r($_SESSION);
-if(isset($_REQUEST['submit'])){
-	echo "sdasd";
+if(isset($_REQUEST['submit'])){$oauth_token=$_SESSION['auth_token'];
+	  $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."'"); 
 	
-}else{
-	echo "assasa";
+			if(pg_num_rows($result) > 0){
+				
+			}
+			else{ 
+				pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id'];."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST['country1']."','".$_REQUEST['upsell_product_id1']."')");
+			}
 }
  ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -15,14 +19,14 @@ require __DIR__.'/style.css'; ?>
 
 <form method="POST">
 <label>Product Id</label>
-<input type="text" disabled value="<?php echo $_GET['id']; ?>" /><br/>
+<input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
 <label>Upsell Show</label>
 <input type="radio" name="upsell_show" value="0"/>Yes
 <input type="radio" name="upsell_show" value="1"/>No 
 <br/>
 <input type="hidden" name="n_country" id="n_country" value="1" />
 <label>Country</label>
-<select name="country">
+<select name="country1">
 <option value="arizona">Arizona</option>
 <option value="atlanta">Atlanta</option>
 <option value="baltimore">Baltimore</option>
