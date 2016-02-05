@@ -17,14 +17,14 @@
 	$password="KJBXNEMK8Vcyyf5FgIJK6yfygO";
 	$credentials = "user=sousqigydxxmjh password=KJBXNEMK8Vcyyf5FgIJK6yfygO";
 	$db = pg_connect( "$host $port $dbname $credentials"  );
-		  $result = pg_query($db,"SELECT * from app_shop_data "); //where shop_url=".$_GET['shop']check if the store exists
+		  $result = pg_query($db,"SELECT * from app_shop_data where shop_url='".$_GET['shop']"'"); //where shop_url=".$_GET['shop']check if the store exists
 			if(pg_num_rows($result) > 0){
 			 echo "dfdsd";
 					  /*  $sql = "UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']";
 					 pg_query($db,"UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']"); */
 			 }
 		else{
-		/* 	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('gdgfd','dgdgf')"); */
+	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$_GET['shop']."','".$oauth_token."')"); 
 			/* pg_query($db,"INSERT INTO app_shop_data SET  = $_GET['shop'],  = $oauth_token "); */	echo "asd";		
 		} 
 	}
