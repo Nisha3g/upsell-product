@@ -17,14 +17,23 @@
 	$password="KJBXNEMK8Vcyyf5FgIJK6yfygO";
 	$credentials = "user=sousqigydxxmjh password=KJBXNEMK8Vcyyf5FgIJK6yfygO";
 	$db = pg_connect( "$host $port $dbname $credentials"  );
-		  $select_store = pg_query($db,"SELECT * from app_shop_data "); //where shop_url=".$_GET['shop']check if the store exists
+		  $result = pg_query($db,"SELECT * from app_shop_data "); //where shop_url=".$_GET['shop']check if the store exists
+		if (!$result) {
+  echo "An error occurred.\n";
+  exit;
+}
+
+while ($row = pg_fetch_row($result)) {
+  echo "id: $row[0] access_token: $row[1]  shop_url: $row[2]";
+  echo "<br />\n";
+}
 		if($select_store->pg_num_rows > 0){
 			 echo "dfdsd";
 					  /*  $sql = "UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']";
 					 pg_query($db,"UPDATE app_shop_data SET access_token =  $oauth_token  WHERE shop_url = $_GET['shop']"); */
 			 }
 		else{
-			pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('gdgfd','dgdgf')");
+		/* 	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('gdgfd','dgdgf')"); */
 			/* pg_query($db,"INSERT INTO app_shop_data SET  = $_GET['shop'],  = $oauth_token "); */	echo "asd";		
 		} 
 	}
