@@ -24,7 +24,7 @@
   product_id character varying(500),
   upsell_show character varying(100),
   country character varying(100),
-  upsell_product character varying(100)
+  upsell_product character varying(100),
   CONSTRAINT productkey PRIMARY KEY (pid)
 )";
 			pg_query($db,$sql);
@@ -37,7 +37,7 @@
   product_id character varying(500),
   upsell_show character varying(100),
   country character varying(100),
-  upsell_product character varying(100)
+  upsell_product character varying(100),
   CONSTRAINT productkey PRIMARY KEY (pid)
 )";
 			pg_query($db,$sql);
