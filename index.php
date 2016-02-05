@@ -4,10 +4,6 @@
 	use phpish\shopify;
 	require __DIR__.'/conf.php';
 	require __DIR__.'/style.css';
-	if(!isset($_SESSION['auth_token'])){
-	 $oauth_token = shopify\access_token($_GET['shop'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET, $_GET['code']);
-	 $_SESSION['auth_token']=$oauth_token;
-	 $_SESSION['shop_url']=$_GET['shop'];
 	$host = "host=ec2-54-225-199-245.compute-1.amazonaws.com";
 	$port = "port=5432";
 	$dbname = "dbname=dbddrf8jsndbge";
@@ -15,10 +11,15 @@
 	$password="KJBXNEMK8Vcyyf5FgIJK6yfygO";
 	$credentials = "user=sousqigydxxmjh password=KJBXNEMK8Vcyyf5FgIJK6yfygO";
 	$db = pg_connect( "$host $port $dbname $credentials"  );
+	if(!isset($_SESSION['auth_token'])){
+	 $oauth_token = shopify\access_token($_GET['shop'], SHOPIFY_APP_API_KEY, SHOPIFY_APP_SHARED_SECRET, $_GET['code']);
+	 $_SESSION['auth_token']=$oauth_token;
+	 $_SESSION['shop_url']=$_GET['shop'];
+
 		  $result = pg_query($db,"SELECT * from app_shop_data where shop_url='".$_GET['shop']."'"); 
 	
 			if(pg_num_rows($result) > 0){
-			echo	$sql= "CREATE TABLE IF NOT EXISTS product_".$oauth_token."(
+			$sql= "CREATE TABLE IF NOT EXISTS product_".$oauth_token."(
   pid serial NOT NULL,
   shop_id integer NOT NULL,
   product_id character varying(500),
@@ -30,8 +31,9 @@
 			pg_query($db,$sql);
 				pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'"); 
 			 }
-		else{	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$oauth_token."','".$_GET['shop']."')");
-	echo	$sql= "CREATE TABLE IF NOT EXISTS  product_".$oauth_token."(
+		else{
+	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$oauth_token."','".$_GET['shop']."')");
+	$sql= "CREATE TABLE IF NOT EXISTS  product_".$oauth_token."(
   pid serial NOT NULL,
   shop_id integer NOT NULL,
   product_id character varying(500),
