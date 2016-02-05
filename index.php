@@ -19,17 +19,10 @@
 	$db = pg_connect( "$host $port $dbname $credentials"  );
 		  $result = pg_query($db,"SELECT * from app_shop_data where shop_url=".$_GET['shop']); //where shop_url=".$_GET['shop']check if thetore exists
 			if(pg_num_rows($result) > 0){
-			 echo "dfdsd";
-				  /*  UPDATE app_shop_data SET access_token =  'sfsdfdf' WHERE shop_url = 'dgdgf'*/
-		echo		 $sql = "UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'";
-					 pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'");
+				pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'"); 
 			 }
-		else{
-		echo	$sql = "UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'";
-			pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'"); 
-			/* echo "INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$_GET['shop']."','".$oauth_token."')"; */
+		else{	
 			pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$oauth_token."','".$_GET['shop']."')");  
-			/* pg_query($db,"INSERT INTO app_shop_data SET  = $_GET['shop'],  = $oauth_token "); */	echo "asd";		
 		} 
 	}
 	 $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
