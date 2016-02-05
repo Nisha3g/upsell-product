@@ -26,7 +26,7 @@
   country character varying(100),
   upsell_product character varying(100)
   CONSTRAINT productkey PRIMARY KEY (pid)
-)"
+)";
 			pg_query($db,$sql);
 				pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'"); 
 			 }
@@ -39,7 +39,7 @@
   country character varying(100),
   upsell_product character varying(100)
   CONSTRAINT productkey PRIMARY KEY (pid)
-)"
+)";
 			pg_query($db,$sql);
 			
 				
