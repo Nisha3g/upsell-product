@@ -19,6 +19,9 @@
 		  $result = pg_query($db,"SELECT * from app_shop_data where shop_url='".$_GET['shop']."'"); 
 	
 			if(pg_num_rows($result) > 0){
+				while($row=pg_fetch_array($result)){  
+					$_SESSION['shop_id']=$row['shop_id'];
+				}
 			$sql= "CREATE TABLE IF NOT EXISTS product_".$oauth_token."(
   pid serial NOT NULL,
   shop_id integer NOT NULL,
