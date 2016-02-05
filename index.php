@@ -18,7 +18,7 @@
 		  $result = pg_query($db,"SELECT * from app_shop_data where shop_url='".$_GET['shop']."'"); 
 	
 			if(pg_num_rows($result) > 0){
-				$sql= "CREATE TABLE IF NOT EXISTS ".$_GET['shop']."product(
+			echo	$sql= "CREATE TABLE IF NOT EXISTS ".$_GET['shop']."product(
   pid serial NOT NULL,
   shop_id serial NOT NULL,
   product_id character varying(500),
@@ -31,7 +31,7 @@
 				pg_query($db,"UPDATE app_shop_data SET access_token =  '$oauth_token'  WHERE shop_url = '".$_GET['shop']."'"); 
 			 }
 		else{	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$oauth_token."','".$_GET['shop']."')");
-		$sql= "CREATE TABLE IF NOT EXISTS ".$_GET['shop']."product(
+	echo	$sql= "CREATE TABLE IF NOT EXISTS ".$_GET['shop']."product(
   pid serial NOT NULL,
   shop_id serial NOT NULL,
   product_id character varying(500),
