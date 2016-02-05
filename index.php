@@ -20,7 +20,7 @@
 			if(pg_num_rows($result) > 0){
 			echo	$sql= "CREATE TABLE IF NOT EXISTS product_".$oauth_token."(
   pid serial NOT NULL,
-  shop_id serial NOT NULL,
+  shop_id integer NOT NULL,
   product_id character varying(500),
   upsell_show character varying(100),
   country character varying(100),
@@ -33,7 +33,7 @@
 		else{	pg_query($db,"INSERT INTO app_shop_data (access_token,shop_url) VALUES ('".$oauth_token."','".$_GET['shop']."')");
 	echo	$sql= "CREATE TABLE IF NOT EXISTS  product_".$oauth_token."(
   pid serial NOT NULL,
-  shop_id serial NOT NULL,
+  shop_id integer NOT NULL,
   product_id character varying(500),
   upsell_show character varying(100),
   country character varying(100),
