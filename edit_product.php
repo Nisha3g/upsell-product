@@ -1,14 +1,20 @@
 <?php session_start();
 print_r($_SESSION);
-if(isset($_REQUEST['submit'])){$oauth_token=$_SESSION['auth_token'];
-	  $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."'"); 
-	
-			if(pg_num_rows($result) > 0){
-				
-			}
-			else{ 
-				pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id'];."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST['country1']."','".$_REQUEST['upsell_product_id1']."')");
-			}
+if(isset($_REQUEST['submit'])){
+	$oauth_token=$_SESSION['auth_token'];
+	for($loop=0; $loop=$_REQUEST['n_country']; $loop++)
+	{
+		$country  ='country'.$loop;
+		$upsell_product_id  ='upsell_product_id'.$loop;
+		$result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
+		if(pg_num_rows($result) > 0){
+			
+		}
+		else{ 
+			pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id'];."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
+			$upsell_product_id]."')");
+		}
+	}
 }
  ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
