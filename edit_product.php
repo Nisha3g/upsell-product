@@ -40,8 +40,9 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 	
 		if(pg_num_rows($result) > 0){
 			$n_country=	pg_num_rows($result);
-			while($row= pg_fetch_array($result)){echo "aaa<br/>";}
-			for($i=1; $i<=$n_country; $i++){?>
+			$i=1;
+			while($row= pg_fetch_array($result)){
+			?>
 				<label>Country</label>
 				<select name="country<?php echo $i; ?>">
 					<option value="arizona">Arizona</option>
@@ -73,10 +74,10 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 					<option value="washington">Washington</option>
 				</select><br/>
 				<label>Upsell Product IDs(Seprated by ",")</label>
-				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"></textarea>
+				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"><?php echo $row['upsell_product']; ?></textarea>
 				<br/>
 				<div class="addnew"></div>	
-			<?php }	
+			<?php $i++; }	
 
 		}
 		else{ $n_country=1;	?>				
