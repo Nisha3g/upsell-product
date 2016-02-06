@@ -14,6 +14,8 @@ if(isset($_REQUEST['submit'])){
 	 $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
 		if(pg_num_rows($result) > 0){
 			
+			pg_query($db,"UPDATE product_".$oauth_token." SET upsell_product =  '".$_REQUEST[$upsell_product_id]."' WHERE product_id='".$_REQUEST['id']."' and  country = '".$_REQUEST[$country]."'");
+			
 		}
 		else{
 			
