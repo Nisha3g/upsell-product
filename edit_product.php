@@ -1,5 +1,5 @@
 <?php session_start();
-print_r($_SESSION);
+/*print_r($_SESSION);*/
 require __DIR__.'/conf.php'; 
 require __DIR__.'/style.css'; 
 if(isset($_REQUEST['submit'])){
