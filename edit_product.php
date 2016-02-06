@@ -35,7 +35,8 @@ if(isset($_REQUEST['submit'])){
 <input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
 <br/>
-<?php  $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."'");
+<?php echo  "SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."'";
+$result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."'");
 	
 		if(pg_num_rows($result) > 0){
 			$n_country=	pg_num_rows($result);
