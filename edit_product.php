@@ -10,15 +10,15 @@ if(isset($_REQUEST['submit'])){
 		echo "SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'";
 		echo "INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
 			$upsell_product_id]."')";
-	/* $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
+	 $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
 		if(pg_num_rows($result) > 0){
 			
 		}
 		else{
 			
-			/* pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id'];."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
-			$upsell_product_id]."')"); *=/
-		} */
+			 pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
+			$upsell_product_id]."')");
+		} 
 	}
 }
  ?>
@@ -32,7 +32,7 @@ require __DIR__.'/style.css'; ?>
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
 <label>Upsell Show</label>
-<input type="radio" name="upsell_show" value="0"/>Yes
+<input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
 <br/>
 <input type="hidden" name="n_country" id="n_country" value="1" />
