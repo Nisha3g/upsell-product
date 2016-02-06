@@ -2,15 +2,15 @@
 print_r($_SESSION);
 if(isset($_REQUEST['submit'])){
 	$oauth_token=$_SESSION['auth_token'];
-	for($loop=0; $loop<$_REQUEST['n_country']; $loop++)
+	for($loop=1; $loop<=$_REQUEST['n_country']; $loop++)
 	{
 		echo $loop;
 		echo $country  ='country'.$loop;
 		echo $upsell_product_id  ='upsell_product_id'.$loop;
-	/*	echo "SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'";
+		echo "SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'";
 		echo "INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id'];."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
 			$upsell_product_id]."')";
-			 $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
+	/*		 $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
 		if(pg_num_rows($result) > 0){
 			
 		}
