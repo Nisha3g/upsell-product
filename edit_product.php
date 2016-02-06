@@ -1,5 +1,7 @@
 <?php session_start();
 print_r($_SESSION);
+require __DIR__.'/conf.php'; 
+require __DIR__.'/style.css'; 
 if(isset($_REQUEST['submit'])){
 	$oauth_token=$_SESSION['auth_token'];
 	for($loop=1; $loop<=$_REQUEST['n_country']; $loop++)
@@ -23,8 +25,7 @@ if(isset($_REQUEST['submit'])){
 }
  ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<?php	require __DIR__.'/conf.php'; 
-require __DIR__.'/style.css'; ?>
+
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 
