@@ -70,7 +70,7 @@
 			<div class="ptitle pitem"><?php echo $product['title']; ?></div>
 			<div class="pedit pitem"><a href="edit_product.php?id=<?php echo $product['id']; ?>">EDIT</a></div>
 			<div style="clear:both"></div>
-		<?php	}	?>
+		<?php $count++; 	}	?>
 			
 		</div>
 		<?php
