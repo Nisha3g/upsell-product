@@ -40,6 +40,7 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 	
 		if(pg_num_rows($result) > 0){
 			$n_country=	pg_num_rows($result);
+			while($row= pg_fetch_array($result)){echo "aaa<br/>";}
 			for($i=1; $i<=$n_country; $i++){?>
 				<label>Country</label>
 				<select name="country<?php echo $i; ?>">
