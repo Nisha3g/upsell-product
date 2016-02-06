@@ -55,22 +55,22 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 					<option value="dallas" <?php if($row['country']=="dallas"){echo "Selected"; } ?>>Dallas</option>
 					<option value="denver" <?php if($row['country']=="denver"){echo "Selected"; } ?>>Denver</option>
 					<option value="detroit" <?php if($row['country']=="detroit"){echo "Selected"; } ?>>Detroit</option>
-					<option value="green_bay">Green Bay</option>
-					<option value="indianapolis">Indianapolis</option>
-					<option value="jacksonville">Jacksonville</option>
-					<option value="kansas_city">Kansas City</option>
-					<option value="miami">Miami</option>
-					<option value="minnesota">Minnesota</option>
-					<option value="new_england">New England</option>
-					<option value="new_orleans">New Orleans</option>
-					<option value="new_york">New York</option>
-					<option value="oakland">Oakland</option>
-					<option value="philadelphia">Philadelphia</option>
-					<option value="pittsburgh">Pittsburgh</option>
-					<option value="san_diego">San Diego</option>
-					<option value="san_francisco">San Francisco</option>
-					<option value="seattle">Seattle</option>
-					<option value="washington">Washington</option>
+					<option value="green_bay" <?php if($row['country']=="green_bay"){echo "Selected"; } ?>>Green Bay</option>
+					<option value="indianapolis" <?php if($row['country']=="indianapolis"){echo "Selected"; } ?>>Indianapolis</option>
+					<option value="jacksonville" <?php if($row['country']=="jacksonville"){echo "Selected"; } ?>>Jacksonville</option>
+					<option value="kansas_city" <?php if($row['country']=="kansas_city"){echo "Selected"; } ?>>Kansas City</option>
+					<option value="miami" <?php if($row['country']=="miami"){echo "Selected"; } ?>>Miami</option>
+					<option value="minnesota" <?php if($row['country']=="minnesota"){echo "Selected"; } ?>>Minnesota</option>
+					<option value="new_england" <?php if($row['country']=="new_england"){echo "Selected"; } ?>>New England</option>
+					<option value="new_orleans" <?php if($row['country']=="new_orleans"){echo "Selected"; } ?>>New Orleans</option>
+					<option value="new_york" <?php if($row['country']=="new_york"){echo "Selected"; } ?>>New York</option>
+					<option value="oakland" <?php if($row['country']=="oakland"){echo "Selected"; } ?>>Oakland</option>
+					<option value="philadelphia" <?php if($row['country']=="philadelphia"){echo "Selected"; } ?>>Philadelphia</option>
+					<option value="pittsburgh" <?php if($row['country']=="pittsburgh"){echo "Selected"; } ?>>Pittsburgh</option>
+					<option value="san_diego" <?php if($row['country']=="san_diego"){echo "Selected"; } ?>>San Diego</option>
+					<option value="san_francisco" <?php if($row['country']=="san_francisco"){echo "Selected"; } ?>>San Francisco</option>
+					<option value="seattle" <?php if($row['country']=="seattle"){echo "Selected"; } ?>>Seattle</option>
+					<option value="washington" <?php if($row['country']=="washington"){echo "Selected"; } ?>>Washington</option>
 				</select><br/>
 				<label>Upsell Product IDs(Seprated by ",")</label>
 				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"><?php echo $row['upsell_product']; ?></textarea>
