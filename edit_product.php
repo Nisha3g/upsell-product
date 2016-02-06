@@ -35,9 +35,8 @@ if(isset($_REQUEST['submit'])){
 <input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
 <br/>
-<?php echo  "SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'";
+<?php
 $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
-	
 		if(pg_num_rows($result) > 0){
 			$n_country=	pg_num_rows($result);
 			$i=1;
@@ -45,17 +44,17 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 			?>
 				<label>Country</label>
 				<select name="country<?php echo $i; ?>">
-					<option value="arizona">Arizona</option>
-					<option value="atlanta">Atlanta</option>
-					<option value="baltimore">Baltimore</option>
-					<option value="buffalo">Buffalo</option>
-					<option value="carolina">Carolina</option>
-					<option value="chicago">Chicago</option>
-					<option value="cincinnati">Cincinnati</option>
-					<option value="cleveland">Cleveland</option>
-					<option value="dallas">Dallas</option>
-					<option value="denver">Denver</option>
-					<option value="detroit">Detroit</option>
+					<option value="arizona" <?php if($row['country']=="arizona"){echo "Selected"; } ?>>Arizona</option>
+					<option value="atlanta" <?php if($row['country']=="atlanta"){echo "Selected"; } ?>>Atlanta</option>
+					<option value="baltimore" <?php if($row['country']=="baltimore"){echo "Selected"; } ?>>Baltimore</option>
+					<option value="buffalo" <?php if($row['country']=="buffalo"){echo "Selected"; } ?>>Buffalo</option>
+					<option value="carolina" <?php if($row['country']=="carolina"){echo "Selected"; } ?>>Carolina</option>
+					<option value="chicago" <?php if($row['country']=="chicago"){echo "Selected"; } ?>>Chicago</option>
+					<option value="cincinnati" <?php if($row['country']=="cincinnati"){echo "Selected"; } ?>>Cincinnati</option>
+					<option value="cleveland" <?php if($row['country']=="cleveland"){echo "Selected"; } ?>>Cleveland</option>
+					<option value="dallas" <?php if($row['country']=="dallas"){echo "Selected"; } ?>>Dallas</option>
+					<option value="denver" <?php if($row['country']=="denver"){echo "Selected"; } ?>>Denver</option>
+					<option value="detroit" <?php if($row['country']=="detroit"){echo "Selected"; } ?>>Detroit</option>
 					<option value="green_bay">Green Bay</option>
 					<option value="indianapolis">Indianapolis</option>
 					<option value="jacksonville">Jacksonville</option>
