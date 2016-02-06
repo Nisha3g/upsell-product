@@ -82,7 +82,7 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"><?php echo $row['upsell_product']; ?></textarea>
 				<br/>
 				<div class="addnew"></div>	
-				<?php}   $i++;}	
+				<?php }   $i++;}	
 
 		}
 		else{ $n_country=1;	?>				
