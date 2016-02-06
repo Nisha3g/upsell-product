@@ -46,7 +46,6 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 			$n_country=	pg_num_rows($result);
 			$i=1;
 			while($row= pg_fetch_array($result)){
-				if($row['upsell_product']!=""){
 			?>
 				<label>Country</label>
 				<select name="country<?php echo $i; ?>">
@@ -82,7 +81,7 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"><?php echo $row['upsell_product']; ?></textarea>
 				<br/>
 				<div class="addnew"></div>	
-				<?php }   $i++;}	
+			<?php $i++; }	
 
 		}
 		else{ $n_country=1;	?>				
