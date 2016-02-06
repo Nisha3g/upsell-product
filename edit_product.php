@@ -2,7 +2,7 @@
 print_r($_SESSION);
 if(isset($_REQUEST['submit'])){
 	$oauth_token=$_SESSION['auth_token'];
-	for($loop=0; $loop=$_REQUEST['n_country']; $loop++)
+	for($loop=0; $loop<$_REQUEST['n_country']; $loop++)
 	{
 		echo $loop;
 		/* $country  ='country'.$loop;
