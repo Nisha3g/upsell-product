@@ -8,13 +8,17 @@ $result = pg_query($db,"SELECT * from product_{$token} where product_id='{$produ
 if(pg_num_rows($result) > 0){
 	while($row= pg_fetch_array($result)){
 		$upsell_products=$row['upsell_product'];
+		$shop_id=$row['shop_id'];
 	}
 }
-
+$result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
+if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
+			$shop_url=$row['shop_id'];
+	}}
  ?>
   jQuery.ajax({
        type: 'GET',
-       url: '/admin/products/<?php echo $product_id ?>.json', 
+       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json', 
        success: function(response){
          	alert(response);
      	}
