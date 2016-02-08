@@ -14,7 +14,7 @@ if(pg_num_rows($result) > 0){
  ?>
   jQuery.ajax({
        type: 'GET',
-       url: '/admin/products/#{$product_id}.json', 
+       url: '/admin/products/{$product_id}.json', 
        success: function(response){
          	alert(response);
      	}
