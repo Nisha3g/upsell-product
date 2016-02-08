@@ -22,8 +22,10 @@ $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_i
 echo $country = $geo["geoplugin_countryName"];
 echo $city = $geo["geoplugin_city"]; */
 $ip = $_SERVER['REMOTE_ADDR'];
-$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-echo $details->city; 
+$add="http://ipinfo.io/".$ip."/json";
+$details = json_decode(file_get_contents($add));
+print_R($details);
+echo "<br/>";
 session_start();
 print_r($_SESSION);
 require __DIR__.'/conf.php'; 
