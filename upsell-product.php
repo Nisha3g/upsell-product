@@ -17,11 +17,13 @@ $.ajax( {
 } );
 </script> */?>
  <?php
-echo $user_ip = $_SERVER['REMOTE_ADDR'];
+/* echo $user_ip = $_SERVER['REMOTE_ADDR'];
 $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
 echo $country = $geo["geoplugin_countryName"];
-echo $city = $geo["geoplugin_city"];
-
+echo $city = $geo["geoplugin_city"]; */
+$ip = $_SERVER['REMOTE_ADDR'];
+$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+echo $details->city; 
 session_start();
 print_r($_SESSION);
 require __DIR__.'/conf.php'; 
