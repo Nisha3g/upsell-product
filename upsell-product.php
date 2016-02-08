@@ -12,6 +12,7 @@ $.ajax( {
   success: function(location) {
 	  alert(location.country_name);
 	   jQuery('#country-name').html(location.country_name);
+	   <?php $_SESSION['country-name']=?>location.country_name;
   }
 } );
 </script>
