@@ -7,7 +7,8 @@
 <?php session_start();
 print_r($_SESSION);
 require __DIR__.'/conf.php'; 
-require __DIR__.'/style.css'; 
+require __DIR__.'/style.css';
+echo  "SELECT * from product_".$_REQUEST['access_token']." where product_id='".$_REQUEST['id']."' and upsell_show=0"
 			$result = pg_query($db,"SELECT * from product_".$_REQUEST['access_token']." where product_id='".$_REQUEST['id']."' and upsell_show=0");
 				if(pg_num_rows($result) > 0){
 					while($row= pg_fetch_array($result)){
