@@ -4,7 +4,7 @@
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	</head>
 	<body class="vaping2">
-<script>
+<?php/* <script>
 $.ajax( { 
   url: 'https://freegeoip.net/json/', 
   type: 'POST', 
@@ -12,11 +12,16 @@ $.ajax( {
   success: function(location) {
 	  alert(location.country_name);
 	   jQuery('#country-name').html(location.country_name);
-	   <?php $_SESSION['country-name']=?>location.country_name;
+	   
   }
 } );
-</script>
-<?php 
+</script> */?>
+ <?php
+echo $user_ip = $_SERVER['REMOTE_ADDR'];
+$geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
+echo $country = $geo["geoplugin_countryName"];
+echo $city = $geo["geoplugin_city"];
+
 session_start();
 print_r($_SESSION);
 require __DIR__.'/conf.php'; 
