@@ -23,9 +23,12 @@ echo $country = $geo["geoplugin_countryName"];
 echo $city = $geo["geoplugin_city"]; */
 $ip = $_SERVER['REMOTE_ADDR'];
 $add="http://ipinfo.io/".$ip."/json";
+$add="http://ipinfo.io/10.159.155.105/json";
 $details = json_decode(file_get_contents($add));
 print_R($details);
 echo "<br/>";
+ $location = file_get_contents('http://freegeoip.net/json/'.$_SERVER['REMOTE_ADDR']);
+ print_r($location);
 session_start();
 print_r($_SESSION);
 require __DIR__.'/conf.php'; 
