@@ -1,12 +1,13 @@
+<?php session_start(); ?>
 <html>
 	<head>
 		<title></title>
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	</head>
 	<body class="vaping2">
-<?php session_start();
- $location = file_get_contents('http://freegeoip.net/json/'.$_SERVER['HTTP_X_FORWARDED_FOR']);
-echo  $country_name=$location->country_name;
+<?php 
+ $location = json_decode(file_get_contents('http://freegeoip.net/json/'.$_SERVER['HTTP_X_FORWARDED_FOR']),true);
+ $country=$location['country_name'];
 require __DIR__.'/conf.php'; 
 require __DIR__.'/style.css';
 echo  "SELECT * from product_".$_REQUEST['access_token']." where product_id='".$_REQUEST['product_id']."' and upsell_show='0'"; 
