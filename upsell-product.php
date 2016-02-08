@@ -18,7 +18,7 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
  ?>
   jQuery.ajax({
        type: 'GET',
-       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json', 
+       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?access_token=<?php echo $token ?>', 
        success: function(response){
          	alert(response);
      	}
