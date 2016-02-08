@@ -13,7 +13,7 @@ if(pg_num_rows($result) > 0){
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
 if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
-			$shop_url=$row['shop_id'];
+			$shop_url=$row['shop_url'];
 	}}
  ?>
   jQuery.ajax({
