@@ -21,15 +21,15 @@ $.ajax( {
 $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$user_ip"));
 echo $country = $geo["geoplugin_countryName"];
 echo $city = $geo["geoplugin_city"]; */
- print_r($_SERVER);
-$ip = $_SERVER['REMOTE_ADDR'];
+/* $ip = $_SERVER['REMOTE_ADDR'];
 $add="http://ipinfo.io/".$ip."/json";
 $add="http://ipinfo.io/10.159.155.105/json";
 $details = json_decode(file_get_contents($add));
 print_R($details);
-echo "<br/>";
- $location = file_get_contents('http://freegeoip.net/json/'.$_SERVER['REMOTE_ADDR']);
+echo "<br/>"; */
+ $location = file_get_contents('http://freegeoip.net/json/'.$_SERVER['HTTP_X_FORWARDED_FOR']);
  print_r($location);
+ print_r($_SERVER);
 session_start();
 print_r($_SESSION);
 require __DIR__.'/conf.php'; 
