@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<title></title>
-		<link rel="stylesheet" href="age-verification.css" type="text/css">
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	</head>
 	<body class="vaping2">
