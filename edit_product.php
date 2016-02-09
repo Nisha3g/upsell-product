@@ -1,10 +1,10 @@
 <?php session_start();
-/*print_r($_SESSION);*/
 require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
 require __DIR__.'/conf.php'; 
 require __DIR__.'/style.css'; 
 if(isset($_REQUEST['submit'])){
+	print_r($_REQUEST);die();
 	$oauth_token=$_SESSION['auth_token'];
 		pg_query($db,"Delete from product_".$oauth_token." where product_id='".$_REQUEST['id']."'");
 	for($loop=1; $loop<=$_REQUEST['n_country']; $loop++)
@@ -21,26 +21,14 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
 	}}
  ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script>
-/* jQuery.ajax({
-       type: 'GET',
-       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $_GET['id'] ?>.json?access_token=<?php echo$_SESSION['auth_token'] ?>', 
-       success: function(response){
-		   alert(response)
-         	$('#image').val(response);
-     	}
-     }); */
-</script>
 <?php $product_id=$_GET['id'];
  $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
 $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
-/* print_r($shopify);
-print_r($products); */
+
 ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 <a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a>
-<?php echo json_encode($products['images']); ?>
 <form method="POST">
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
