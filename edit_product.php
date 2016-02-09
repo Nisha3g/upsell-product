@@ -47,8 +47,8 @@ print_r($products); */
 <label>Product name</label>
 <input type="text" disabled value="<?php echo $products['title']; ?>" name="title"/><br/>
 <input type="hidden" name="body_html"  id="body_html" value="<?php if(is_array($products['body_html'])){ echo json_encode($products['body_html']);} else{ echo $products['body_html']; } ?>" />
-<input type="hidden" name="vendor"  id="vendor"  value="<?php echo $products['vendor']; ?>"/>
-<input type="hidden" name="product_type"  id="product_type"  value="<?php echo $products['product_type']; ?>"/>
+<input type="hidden" name="vendor"  id="vendor"  value="<?php if(is_array($products['vendor'])){ echo json_encode($products['vendor']);} else{ echo $products['vendor']; } ?>"/>
+<input type="hidden" name="product_type"  id="product_type"  value="<?php if(is_array($products['product_type'])){ echo json_encode($products['product_type']);} else{ echo $products['product_type']; } ?>"/>
 <input type="hidden" name="created_at"  id="created_at" value="<?php echo $products['created_at']; ?>" />
 <input type="hidden" name="updated_at"  id="updated_at" value="<?php echo $products['updated_at']; ?>" />
 <input type="hidden" name="published_at"  id="published_at"  value="<?php echo $products['published_at']; ?>"/>
