@@ -22,7 +22,7 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
 <script>
 jQuery.ajax({
        type: 'GET',
-       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $_GET['id'] ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
+       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $_GET['id'] ?>.json?access_token=<?php echo$_SESSION['auth_token'] ?>', 
        success: function(response){
 		   alert(response)
          	$('#image').val(response);
