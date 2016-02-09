@@ -54,6 +54,7 @@
    	try
 	{		
 		$products = $shopify('GET /admin/products.json', array('published_status'=>'published'));
+		print_r($products);
 		?>
 		<div class="maintable">
 		<h1>PRODUCTS</h1>
