@@ -44,7 +44,7 @@ print_r($products);
 <form method="POST">
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
-<?php echo json_decode($products['images']); ?>
+<?php echo json_encode($products['images']); ?>
 <label>Product name</label>
 <input type="text" disabled value="<?php echo $products['title']; ?>" name="title"/><br/>
 <input type="hidden" name="body_html"  id="body_html" value="<?php echo $products['body_html']; ?>" />
