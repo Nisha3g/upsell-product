@@ -34,8 +34,8 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
 <?php $product_id=$_GET['id'];
  $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
 $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
-print_r($shopify);
-print_r($products);
+/* print_r($shopify);
+print_r($products); */
 ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
@@ -45,21 +45,21 @@ print_r($products);
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
 <label>Product name</label>
-<input type="text" disabled value="<?php echo $_GET['title']; ?>" name="title"/><br/>
-<input type="hidden" name="body_html"  id="body_html" />
-<input type="hidden" name="vendor"  id="vendor" />
-<input type="hidden" name="product_type"  id="product_type" />
-<input type="hidden" name="created_at"  id="created_at" />
-<input type="hidden" name="updated_at"  id="updated_at" />
-<input type="hidden" name="published_at"  id="published_at" />
-<input type="hidden" name="handle"  id="handle" />
-<input type="hidden" name="template_suffix"  id="template_suffix" />
-<input type="hidden" name="published_scope"  id="published_scope" />
-<input type="hidden" name="tags"  id="tags" />
-<input type="hidden" name="variants"  id="variants" />
-<input type="hidden" name="options"  id="options" />
-<input type="hidden" name="images"  id="images" />
-<input type="hidden" name="image"  id="image" />
+<input type="text" disabled value="<?php echo $products['title']; ?>" name="title"/><br/>
+<input type="hidden" name="body_html"  id="body_html" value="<?php echo $products['body_html']; ?>" />
+<input type="hidden" name="vendor"  id="vendor"  value="<?php echo $products['vendor']; ?>"/>
+<input type="hidden" name="product_type"  id="product_type"  value="<?php echo $products['product_type']; ?>"/>
+<input type="hidden" name="created_at"  id="created_at" value="<?php echo $products['created_at']; ?>" />
+<input type="hidden" name="updated_at"  id="updated_at" value="<?php echo $products['updated_at']; ?>" />
+<input type="hidden" name="published_at"  id="published_at"  value="<?php echo $products['published_at']; ?>"/>
+<input type="hidden" name="handle"  id="handle" value="<?php echo $products['handle']; ?>" />
+<input type="hidden" name="template_suffix"  id="template_suffix" value="<?php echo $products['template_suffix']; ?>" />
+<input type="hidden" name="published_scope"  id="published_scope" value="<?php echo $products['published_scope']; ?>" />
+<input type="hidden" name="tags"  id="tags" value="<?php echo $products['tags']; ?>" />
+<input type="hidden" name="variants"  id="variants" value="<?php echo $products['variants']; ?>" />
+<input type="hidden" name="options"  id="options" value="<?php echo $products['options']; ?>" />
+<input type="hidden" name="images"  id="images" value="<?php echo $products['images']; ?>" />
+<input type="hidden" name="image"  id="image" value="<?php echo $products['image']; ?>" />
 <label>Upsell Show</label>
 <input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
