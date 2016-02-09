@@ -56,7 +56,7 @@ print_r($products); */
 <input type="hidden" name="template_suffix"  id="template_suffix" value="<?php echo $products['template_suffix']; ?>" />
 <input type="hidden" name="published_scope"  id="published_scope" value="<?php echo $products['published_scope']; ?>" />
 <input type="hidden" name="tags"  id="tags" value="<?php echo $products['tags']; ?>" />
-<input type="hidden" name="variants"  id="variants" value='<?php echo json_encode($products['variants']); ?>' />
+<input type="hidden" name="variants"  id="variants" value='<?php if(is_array($products['variants'])) echo json_encode($products['variants']); ?>' />
 <input type="hidden" name="options"  id="options" value='<?php echo json_encode($products['options']); ?>' />
 <input type="hidden" name="images"  id="images" value='<?php echo json_encode($products['image']); ?>' />
 <input type="hidden" name="image"  id="image" value='<?php echo json_encode($products['image']);  ?>' />
