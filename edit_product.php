@@ -11,25 +11,24 @@ if(isset($_REQUEST['submit'])){
 		$upsell_product_id  ='upsell_product_id'.$loop;
 		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
 			$upsell_product_id]."')");
-	/* 	echo "SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'";
-		echo "INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
-			$upsell_product_id]."')"; */
-	/*  $result = pg_query($db,"SELECT * from product_".$oauth_token." where product_id='".$_REQUEST['id']."' and country='".$_REQUEST[$country]."'");		
-		if(pg_num_rows($result) > 0){
-			
-			pg_query($db,"UPDATE product_".$oauth_token." SET upsell_product =  '".$_REQUEST[$upsell_product_id]."' WHERE product_id='".$_REQUEST['id']."' and  country = '".$_REQUEST[$country]."'");
-			
-		}
-		else{
-			
-			 pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[
-			$upsell_product_id]."')");
-		}  */
 	}
 }
+$result = pg_query($db,"SELECT * from app_shop_data where shop_id='".$_SESSION['shop_id']."'");
+if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
+			$shop_url=$row['shop_url'];
+	}}
  ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-
+<script>
+jQuery.ajax({
+       type: 'GET',
+       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $_GET['id'] ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
+       success: function(response){
+		   alert(response)
+         	$('#image').val(response);
+     	}
+     });
+</script>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 <a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a>
@@ -37,6 +36,22 @@ if(isset($_REQUEST['submit'])){
 <form method="POST">
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
+<label>Product name</label>
+<input type="text" disabled value="<?php echo $_GET['title']; ?>" name="title"/><br/>
+<input type="hidden" name="body_html"  id="body_html" />
+<input type="hidden" name="vendor"  id="vendor" />
+<input type="hidden" name="product_type"  id="product_type" />
+<input type="hidden" name="created_at"  id="created_at" />
+<input type="hidden" name="updated_at"  id="updated_at" />
+<input type="hidden" name="published_at"  id="published_at" />
+<input type="hidden" name="handle"  id="handle" />
+<input type="hidden" name="template_suffix"  id="template_suffix" />
+<input type="hidden" name="published_scope"  id="published_scope" />
+<input type="hidden" name="tags"  id="tags" />
+<input type="hidden" name="variants"  id="variants" />
+<input type="hidden" name="options"  id="options" />
+<input type="hidden" name="images"  id="images" />
+<input type="hidden" name="image"  id="image" />
 <label>Upsell Show</label>
 <input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
