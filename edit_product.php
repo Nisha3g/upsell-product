@@ -46,7 +46,7 @@ print_r($products); */
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
 <label>Product name</label>
 <input type="text" disabled value="<?php echo $products['title']; ?>" name="title"/><br/>
-<input type="hidden" name="body_html"  id="body_html" value="<?php echo $products['body_html']; ?>" />
+<input type="hidden" name="body_html"  id="body_html" value="<?php if(is_array($products['body_html'])){ echo json_encode($products['body_html']);} else{ echo $products['body_html']; } ?>" />
 <input type="hidden" name="vendor"  id="vendor"  value="<?php echo $products['vendor']; ?>"/>
 <input type="hidden" name="product_type"  id="product_type"  value="<?php echo $products['product_type']; ?>"/>
 <input type="hidden" name="created_at"  id="created_at" value="<?php echo $products['created_at']; ?>" />
