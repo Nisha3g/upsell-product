@@ -20,15 +20,20 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
  ?>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script>
-jQuery.ajax({
+/* jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $_GET['id'] ?>.json?access_token=<?php echo$_SESSION['auth_token'] ?>', 
        success: function(response){
 		   alert(response)
          	$('#image').val(response);
      	}
-     });
+     }); */
 </script>
+<?php
+ $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
+$products = $shopify('GET /admin/products.json', array('published_status'=>'published', 'id'=>'4522231750'));
+print_r($products);
+?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
 <a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a>
