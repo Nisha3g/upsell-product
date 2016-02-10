@@ -25,8 +25,8 @@ if(pg_num_rows($result) > 0){
  for($i=1;$i<=$count_upsell; $i++){ 
 	echo $up_p_id=$upsell_product[$i];
 	$products[$i] = $shopify("GET /admin/products/{$up_p_id}.json", array('published_status'=>'published'));
-	$count_upsells[$i]=count($products); ?>
-	alert("upsell products"+<?php echo $count_upsells[$i]." asdfsdf ".$i;?>); 
+	$count_upsells[$i]=count($products[$i]); ?>
+	alert("upsell products"+<?php echo $count_upsells[$i];?>); 
  <?php } ?>
 	 /*  jQuery.ajax({
        type: 'GET',
