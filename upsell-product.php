@@ -31,6 +31,7 @@ if(pg_num_rows($result) > 0){
  echo $up_p_id=$upsell_product[$i];
  $products = $shopify("GET /admin/products/{$upsell_product[$i]}.json", array('published_status'=>'published'));
  ?> 
+ alert(<?php echo $products['image']; ?>);
  document.write("<div class='item '><div class='countdiv' style='display:none'></div><div class='product-wrapper product-<?php echo $products['id']; ?>'><div class='listviewcontent'><div class='product-image'><img src='' alt='{{ product.title | escape  }}' /></div>     		<div class='product-name'><?php echo $products['title']; ?></div></div>      	<div class='listviewcontent2'>         <div class='product-partnum'>{{ product.variants.first.sku }}</div>  <div class='product-buy'>      <form method='post' action=''>      <div class='product-price regular' style='display:none'>$19.99</div>      <div class='product-price sale' style=''>{{ product.price | money }}</div>      <div class='product-buttons' id='900162372-3542601220'>      <input name='quantity' style='display:none' type='text' value='1' maxlength='5' class='qty'>      <input id='addtocart1' name='addtocart' type='button' value='Add to Cart' class='addtocart-<?php echo $products['id']; ?> addtocart-<?php echo $products['handle']; ?> addtocart-{{ product.metafields.scarcity.producttype  }}'  onclick='savecart1();'>        </div></form></div>   		</div>        <div class='cleardiv'></div></div>      </div> ");
 
   
