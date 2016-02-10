@@ -41,14 +41,12 @@ $count_upsells=count($products);
          	alert(response);
      	}
      }); */
- <?php
+ <?php 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
+$products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
  for($i=1;$i<=$count_upsell; $i++){ 
  echo $up_p_id=$upsell_product[$i];
- 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
-$products = $shopify("GET /admin/products/{$up_p_id}.json", array('published_status'=>'published'));
-$count_upsells=count($products);
  ?> 
- alert("upsell products"+<?php echo $count_upsells;?>); 
+ alert("upsell products"+<?php echo $up_p_id;?>); 
   /* jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
