@@ -40,9 +40,9 @@ if(pg_num_rows($result) > 0){
      	}
      }); */
  <?php 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
-$products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
+
  for($i=0;$i<$count_upsell; $i++){ 
- 
+ $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
  echo $up_p_id=$upsell_product[$i];
  ?> 
  alert("upsell productssdsdfds"+<?php echo $upsell_product[$i];?>); 
