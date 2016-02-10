@@ -37,18 +37,6 @@ if(pg_num_rows($result) > 0){
 <?php } ?>
  document.write("</div></div><div style='clear:both'></div><div id='button1' class='popupbottom1' style='float:right'><style>#upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}#upsellclosebtn:hover{float: none;color:#000;text-decoration:none;margin-right:10px;}</style><a id='upsellclosebtn' href='/checkout' class='upsell_no_thanks'>No Thanks</a><a id='inline' href='/checkout' class='product-modal pm1 cart btn' style='color: rgb(255, 255, 255); margin-bottom: 7px; margin-right: 25px; margin-top: 7px; background-color: rgb(48, 194, 117);float:left'>Checkout</a></div>");
   $(document).ready(function() {
-    if(window.location.search == "?up=1"){
-      var axes2 = new Array();
-      var i=0;
-      {% for item in cart.items %}
-         if("{{ item.product.metafields.upsell-type.upsell-type }}") {
-           axes2[i]="{{ item.product.metafields.upsell-type.upsell-type }}";
-           i++;
-         }
-      {% endfor %}
-      console.log(axes2);
-      
-      if(axes2.length != 0){
         $.fancybox.open([
         {
           href : '#cartrelatedproduct',
@@ -57,8 +45,6 @@ if(pg_num_rows($result) > 0){
         ], {
           padding : 0   
         });
-      }
-    }
   });
    $('.product-modal').fancybox({
     helpers: {
