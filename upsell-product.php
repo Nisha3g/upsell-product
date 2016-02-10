@@ -41,11 +41,11 @@ if(pg_num_rows($result) > 0){
      }); */
  <?php 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
 $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
- for($i=0;$i<=$count_upsell; $i++){ 
+ for($i=0;$i<$count_upsell; $i++){ 
  
  echo $up_p_id=$upsell_product[$i];
  ?> 
- alert("upsell productssdsdfds"+<?php echo $i;?>); 
+ alert("upsell productssdsdfds"+<?php echo $upsell_product[$i];?>); 
   /* jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
