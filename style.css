@@ -19,4 +19,5 @@ input, select, textarea {
 input[type="radio"], input[type="submit"] {
   width:auto
 }
+#upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}#upsellclosebtn:hover{float: none;color:#000;text-decoration:none;margin-right:10px;}.upsell_popup_h .listview .item { width: 250px;    display: inline-block;    float: left;}
 </style>
