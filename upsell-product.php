@@ -43,7 +43,7 @@ $count_upsells=count($products);
      }); */
  <?php 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
 $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
- for($i=1;$i<=$count_upsell; $i++){ 
+ for($i=0;$i<=$count_upsell; $i++){ 
  echo $up_p_id=$upsell_product[$i];
  ?> 
  alert("upsell products"+<?php echo $up_p_id;?>); 
