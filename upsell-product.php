@@ -7,23 +7,23 @@ $product_id = $_REQUEST['product_id'];
 $result = pg_query($db,"SELECT * from product_{$token} where product_id='{$product_id}' and upsell_show= '0' and country='{$country}'");
 if(pg_num_rows($result) > 0){
 	while($row= pg_fetch_array($result)){
-		$upsell_products=$row['upsell_product'];
-		$shop_id=$row['shop_id'];
-		$upsell_show=$row['upsell_show'];
-		$body_html=$row['body_html'];
-		$vendor=$row['vendor'];
-		$product_type=$row['product_type'];
-		$handle=$row['handle'];
-		$template_suffix=$row['template_suffix'];
-		$published_scope=$row['published_scope'];
-		$tags=$row['tags'];
-		$variants=$row['variants'];
-		$options=$row['options'];
-		$images=$row['images'];
-		$image=$row['image'];
-		$created_at=$row['created_at'];
-		$updated_at=$row['updated_at'];
-		$published_at=$row['published_at'];
+		$upsell_products[]=$row['upsell_product'];
+		$shop_id[]=$row['shop_id'];
+		$upsell_show[]=[]$row['upsell_show'];
+		$body_html[]=$row['body_html'];
+		$vendor[]=$row['vendor'];
+		$product_type[]=$row['product_type'];
+		$handle[]=$row['handle'];
+		$template_suffix[]=$row['template_suffix'];
+		$published_scope[]=$row['published_scope'];
+		$tags[]=$row['tags'];
+		$variants[]=$row['variants'];
+		$options[]=$row['options'];
+		$images[]=$row['images'];
+		$image[]=$row['image'];
+		$created_at[]=$row['created_at'];
+		$updated_at[]=$row['updated_at'];
+		$published_at[]=$row['published_at'];
 	}
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
@@ -31,14 +31,7 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
 			$shop_url=$row['shop_url'];
 	}}
  ?>
- alert("upsell products"+<?php echo $upsell_products;?>);
- /*  jQuery.ajax({
-       type: 'GET',
-       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
-       success: function(response){
-         	alert(response);
-     	}
-     }); */
+ alert("upsell products"+<?php echo count($upsell_products);?>);
 document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><?php echo $upsell_products; ?></div></div></div>");
 document.write("<div id='four-product' class='product-upsell'><div class='opt1' style='display:none'><div class='upsell-description'>{{ product.title }}</div><div class='upsell-description-small' style=''>{{ settings.opt1body }}</div></div><div class='opt2' style='display:none'><div class='upsell-description'>{{ settings.opt2title }}</div><div class='upsell-description-small' style=''>{{ settings.opt2body }} </div></div> <div class='opt3' style='display:none'><div class='upsell-description'>{{ settings.opt3title }}</div><div class='upsell-description-small' style=''>{{ settings.opt3body }}</div></div><div class='opt4' style='display:none'><div class='upsell-description'>{{ settings.opt4title }}</div><div class='upsell-description-small' style=''> {{ settings.opt4body }}</div></div><div class='opt5' style='display:none'><div class='upsell-description'>{{ settings.opt5title }}</div><div class='upsell-description-small' style=''>{{ settings.opt5body }}</div></div>  <div class='opt6' style='display:none'><div class='upsell-description'>{{ settings.opt6title }}</div><div class='upsell-description-small' style=''>{{ settings.opt6body }}</div></div></div>");
 
