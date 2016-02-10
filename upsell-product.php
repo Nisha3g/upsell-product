@@ -21,7 +21,15 @@ if(pg_num_rows($result) > 0){
 	$count_upsell=count($upsell_product);
  ?>
  
- alert("upsell products"+<?php echo $count_upsell;?>);  jQuery.ajax({
+ alert("upsell products"+<?php echo $count_upsell;?>); 
+ jQuery.ajax({
+       type: 'GET',
+       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?access_token=<?php echo $token ?>', 
+       success: function(response){
+         	alert(response);
+     	}
+     }); 
+	 jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
        success: function(response){
