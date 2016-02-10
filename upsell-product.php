@@ -22,19 +22,20 @@ if(pg_num_rows($result) > 0){
 	$upsell_product=explode(",", $upsell_products);
 	$count_upsell=count($upsell_product);
 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
-$products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
-$count_upsells=count($products);
- ?>
- 
- alert("upsell products"+<?php echo $count_upsells;?>); 
- jQuery.ajax({
+ for($i=1;$i<=$count_upsell; $i++){ 
+	echo $up_p_id=$upsell_product[$i];
+	$products[$i] = $shopify("GET /admin/products/{$up_p_id}.json", array('published_status'=>'published'));
+	$count_upsells[$i]=count($products); ?>
+	alert("upsell products"+<?php echo $count_upsells[$i]." asdfsdf ".$i;?>); 
+ <?php } ?>
+	 /*  jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?access_token=<?php echo $token ?>', 
        success: function(response){
          	alert(response);
      	}
      }); 
-	 /* jQuery.ajax({
+jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
        success: function(response){
