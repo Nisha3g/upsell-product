@@ -1,6 +1,8 @@
 <?php 
 $location = json_decode(file_get_contents('http://freegeoip.net/json/'.$_SERVER['HTTP_X_FORWARDED_FOR']),true);
 $country = $location['country_name'];
+require __DIR__.'/vendor/autoload.php';
+	use phpish\shopify;
 require __DIR__.'/conf.php'; 
 $token = $_REQUEST['access_token'];
 $product_id = $_REQUEST['product_id'];
@@ -19,9 +21,12 @@ if(pg_num_rows($result) > 0){
 	}}
 	$upsell_product=explode(",", $upsell_products);
 	$count_upsell=count($upsell_product);
+	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
+$products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
+$count_upsells=count($products);
  ?>
  
- alert("upsell products"+<?php echo $count_upsell;?>); 
+ alert("upsell products"+<?php echo $count_upsells;?>); 
  jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?access_token=<?php echo $token ?>', 
