@@ -29,13 +29,13 @@ if(pg_num_rows($result) > 0){
          	alert(response);
      	}
      }); 
-	 jQuery.ajax({
+	 /* jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
        success: function(response){
          	alert(response);
      	}
-     });
+     }); */
  <?php
  for($i=1;$i<=$count_upsell; $i++){ 
  echo $up_p_id=$upsell_product[$i];
