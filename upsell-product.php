@@ -9,6 +9,21 @@ if(pg_num_rows($result) > 0){
 	while($row= pg_fetch_array($result)){
 		$upsell_products=$row['upsell_product'];
 		$shop_id=$row['shop_id'];
+		$upsell_show=$row['upsell_show'];
+		$body_html=$row['body_html'];
+		$vendor=$row['vendor'];
+		$product_type=$row['product_type'];
+		$handle=$row['handle'];
+		$template_suffix=$row['template_suffix'];
+		$published_scope=$row['published_scope'];
+		$tags=$row['tags'];
+		$variants=$row['variants'];
+		$options=$row['options'];
+		$images=$row['images'];
+		$image=$row['image'];
+		$created_at=$row['created_at'];
+		$updated_at=$row['updated_at'];
+		$published_at=$row['published_at'];
 	}
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
