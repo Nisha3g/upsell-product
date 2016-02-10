@@ -22,7 +22,7 @@ if(pg_num_rows($result) > 0){
  ?>
  
  alert("upsell products"+<?php echo $count_upsell;?>);
- for(var i=1;i<= <?php echo $count_upsell; ?>; i++; ){
+ for(var i=1;i<= <?php echo $count_upsell; ?>; i++){
   jQuery.ajax({
        type: 'GET',
        url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
