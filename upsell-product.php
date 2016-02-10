@@ -21,29 +21,11 @@ if(pg_num_rows($result) > 0){
 	}}
 	$upsell_product=explode(",", $upsell_products);
 	$count_upsell=count($upsell_product);
-
- ?>
- 
- alert("upsell products"+<?php echo $count_upsell;?>); 
-/*  jQuery.ajax({
-       type: 'GET',
-       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?access_token=<?php echo $token ?>', 
-       success: function(response){
-         	alert(response);
-     	}
-     });  */
-	 /* jQuery.ajax({
-       type: 'GET',
-       url: 'https://<?php echo $shop_url ?>/admin/products/<?php echo $product_id ?>.json?api_key=<?php echo SHOPIFY_APP_API_KEY ?>', 
-       success: function(response){
-         	alert(response);
-     	}
-     }); */
- <?php 	 $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
+ $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
 
  for($i=0;$i<$count_upsell; $i++){ 
- $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
  echo $up_p_id=$upsell_product[$i];
+ $products = $shopify("GET /admin/products/{$upsell_product[$i]}.json", array('published_status'=>'published'));
  ?> 
  alert("upsell productssdsdfds"+<?php echo $upsell_product[$i];?>); 
   /* jQuery.ajax({
