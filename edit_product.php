@@ -24,7 +24,7 @@ if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
 <?php $product_id=$_GET['id'];
  $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
 $products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
-
+print_R($products);
 ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
