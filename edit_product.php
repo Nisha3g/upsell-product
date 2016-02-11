@@ -90,7 +90,7 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 					<option value="San Francisco" <?php if($row['country']=="San Francisco"){echo "Selected"; } ?>>San Francisco</option>
 					<option value="Seattle" <?php if($row['country']=="Seattle"){echo "Selected"; } ?>>Seattle</option>
 					<option value="Washington" <?php if($row['country']=="Washington"){echo "Selected"; } ?>>Washington</option>
-					<option value="India" <?php if($row['country']=="India"){echo "Selected"; } ?>>India</option>
+					<option value="Mohali" <?php if($row['country']=="Mohali"){echo "Selected"; } ?>>Mohali(India)</option>
 				</select><br/>
 				<label>Upsell Product IDs(Seprated by ",")</label>
 				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"><?php echo $row['upsell_product']; ?></textarea>
@@ -129,7 +129,7 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 					<option value="San Francisco">San Francisco</option>
 					<option value="Seattle">Seattle</option>
 					<option value="Washington">Washington</option>
-					<option value="India">India</option>
+					<option value="Mohali">Mohali(India)</option>
 				</select>
 				<br/>
 				<label>Upsell Product IDs(Seprated by ",")</label>
@@ -144,7 +144,7 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 
 	$("#add_new_country").click(function() {
 		 var eid = parseInt($('.upsell_product_id').length+1);
-			$("div[class^=addnew]:last").after('<label>Country</label><select name="country'+eid+'"><option value="Arizona">Arizona</option><option value="Atlanta">Atlanta</option><option value="Baltimore">Baltimore</option><option value="Buffalo">Buffalo</option><option value="Carolina">Carolina</option><option value="Chicago">Chicago</option><option value="Cincinnati">Cincinnati</option><option value="Cleveland">Cleveland</option>					<option value="Dallas">Dallas</option><option value="Denver">Denver</option>					<option value="Detroit">Detroit</option><option value="Green Bay">Green Bay</option><option value="Indianapolis">Indianapolis</option><option value="Jacksonville">Jacksonville</option><option value="Kansas City">Kansas City</option><option value="Miami">Miami</option>					<option value="Minnesota">Minnesota</option><option value="New England">New England</option><option value="New Orleans">New Orleans</option><option value="New York">New York</option>					<option value="Oakland">Oakland</option><option value="Philadelphia">Philadelphia</option><option value="Pittsburgh">Pittsburgh</option><option value="San Diego">San Diego</option>					<option value="San Francisco">San Francisco</option><option value="Seattle">Seattle</option><option value="Washington">Washington</option><option value="India">India</option></select><br/><label>Upsell Product IDs(Seprated by ",")</label><textarea name="upsell_product_id'+eid+'" class="upsell_product_id"></textarea><br/><div class="addnew"></div>');
+			$("div[class^=addnew]:last").after('<label>Country</label><select name="country'+eid+'"><option value="Arizona">Arizona</option><option value="Atlanta">Atlanta</option><option value="Baltimore">Baltimore</option><option value="Buffalo">Buffalo</option><option value="Carolina">Carolina</option><option value="Chicago">Chicago</option><option value="Cincinnati">Cincinnati</option><option value="Cleveland">Cleveland</option>					<option value="Dallas">Dallas</option><option value="Denver">Denver</option>					<option value="Detroit">Detroit</option><option value="Green Bay">Green Bay</option><option value="Indianapolis">Indianapolis</option><option value="Jacksonville">Jacksonville</option><option value="Kansas City">Kansas City</option><option value="Miami">Miami</option>					<option value="Minnesota">Minnesota</option><option value="New England">New England</option><option value="New Orleans">New Orleans</option><option value="New York">New York</option>					<option value="Oakland">Oakland</option><option value="Philadelphia">Philadelphia</option><option value="Pittsburgh">Pittsburgh</option><option value="San Diego">San Diego</option>					<option value="San Francisco">San Francisco</option><option value="Seattle">Seattle</option><option value="Washington">Washington</option><option value="Mohali">Mohali(India)</option></select><br/><label>Upsell Product IDs(Seprated by ",")</label><textarea name="upsell_product_id'+eid+'" class="upsell_product_id"></textarea><br/><div class="addnew"></div>');
 			var n_country=$('#n_country').val();
 		$('#n_country').val(parseInt(n_country)+parseInt(1)); 
 	});
