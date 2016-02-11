@@ -10,7 +10,7 @@ if(isset($_REQUEST['submit'])){
 	{
 		$country  ='country'.$loop;
 		$upsell_product_id  ='upsell_product_id'.$loop;
-		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at,title_upsell,body_upsell) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."','".$_REQUEST['title_upsell']."','".$_REQUEST['body_upsell']."')");
+		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at,title_upsell,body_upsell,max_qty) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."','".$_REQUEST['title_upsell']."','".$_REQUEST['body_upsell']."','".$_REQUEST['max_qty']."')");
 	}
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='".$_SESSION['shop_id']."'");
@@ -26,7 +26,7 @@ $products = $shopify("GET /admin/products/{$product_id}.json", array('published_
 ?>
 <h1>EDIT PRODUCT</h1>
 <a href="index.php">Back</a>
-<a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a>
+<?php /* <a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a> */?>
 <form method="POST">
 <label>Product Id</label>
 <input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
@@ -64,6 +64,9 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 <input type="text" value='<?php echo $title_upsell; ?>' name="title_upsell"/><br/>
 <label>body for Upsell</label>
 <textarea name="body_upsell"><?php echo $body_upsell; ?></textarea><br/>
+<label>Maximum Quantity</label>
+<input type="text" value='<?php echo $max_qty; ?>' name="max_qty"/><br/>
+
 <?php
 $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
 		if(pg_num_rows($result) > 0){
