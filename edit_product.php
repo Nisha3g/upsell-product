@@ -10,7 +10,7 @@ if(isset($_REQUEST['submit'])){
 	{
 		$country  ='country'.$loop;
 		$upsell_product_id  ='upsell_product_id'.$loop;
-		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."')");
+		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at,title_upsell,body_upsell) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."','".$_REQUEST['title_upsell']."','".$_REQUEST['body_upsell']."')");
 	}
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='".$_SESSION['shop_id']."'");
@@ -49,17 +49,22 @@ $products = $shopify("GET /admin/products/{$product_id}.json", array('published_
 <label>Upsell Show</label>
 <input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
-<br/>
+<br/><?php
+$result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
+		if(pg_num_rows($result) > 0){
+			$n_country=	pg_num_rows($result);
+			$i=1;	while($row= pg_fetch_array($result)){$title_upsell=$row['title_upsell'];$body_upsell=$row['body_upsell'];}?>
 <label>Title for Upsell</label>
-<input type="text" value='<?php echo $products['title_upsell']; ?>' name="title_upsell"/><br/>
+<input type="text" value='<?php echo $title_upsell; ?>' name="title_upsell"/><br/>
 <label>body for Upsell</label>
-<textarea name="body_upsell"><?php echo $products['body_upsell']; ?></textarea><br/>
+<textarea name="body_upsell"><?php echo $body_upsell; ?></textarea><br/>
 <?php
 $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
 		if(pg_num_rows($result) > 0){
 			$n_country=	pg_num_rows($result);
 			$i=1;
 			while($row= pg_fetch_array($result)){
+				
 			?>
 				<label>Country</label>
 				<select name="country<?php echo $i; ?>">
