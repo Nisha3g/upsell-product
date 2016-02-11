@@ -31,7 +31,7 @@ if(pg_num_rows($result) > 0){
 	$count_upsell=count($upsell_product);
  $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
  ?>
- document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><?php echo $title_upsell; ?><?php echo $body_upsell; ?><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
+ document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><div id='four-product' class='product-upsell'><div class='opt1' style='display:none'><div class='upsell-description'><?php echo $title_upsell; ?></div><div class='upsell-description-small' style=''><?php echo $body_upsell; ?></div></div><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
  
  
  <?php 
