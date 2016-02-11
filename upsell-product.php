@@ -1,93 +1,151 @@
-<?php 
-/* $location = json_decode(file_get_contents('http://freegeoip.net/json/'.$_SERVER['HTTP_X_FORWARDED_FOR']),true);
-$country = $location['country_name'];  */
-$ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
-$api_key="6c0706c14e72e6376bf58f1b5434cb7b4dc934492207b1b690c1078b6d32c19c";
- $details =json_decode(file_get_contents("http://api.ipinfodb.com/v3/ip-city/?key=$api_key&ip=$ip&format=json"));
-/* print_R($details); */
-$country = $details->cityName;
+<?php session_start();
 require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
 require __DIR__.'/conf.php'; 
-$token = $_REQUEST['access_token'];
-$product_id = $_REQUEST['product_id'];
-$result = pg_query($db,"SELECT * from product_{$token} where product_id='{$product_id}' and upsell_show= '0' and country='{$country}'");
-if(pg_num_rows($result) > 0){
-	while($row= pg_fetch_array($result)){
-		$upsell_products=$row['upsell_product'];
-		$shop_id=$row['shop_id'];
-		$upsell_show=$row['upsell_show'];		
+require __DIR__.'/style.css'; 
+if(isset($_REQUEST['submit'])){
+	$oauth_token=$_SESSION['auth_token'];
+	pg_query($db,"Delete from product_".$oauth_token." where product_id='".$_REQUEST['id']."'");
+	for($loop=1; $loop<=$_REQUEST['n_country']; $loop++)
+	{
+		$country  ='country'.$loop;
+		$upsell_product_id  ='upsell_product_id'.$loop;
+		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at,title_upsell,body_upsell) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."','".$_REQUEST['title_upsell']."','".$_REQUEST['body_upsell']."')");
 	}
 }
-$result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
-if(pg_num_rows($result) > 0){
-	while($row= pg_fetch_array($result)){
+$result = pg_query($db,"SELECT * from app_shop_data where shop_id='".$_SESSION['shop_id']."'");
+if(pg_num_rows($result) > 0){while($row= pg_fetch_array($result)){
 			$shop_url=$row['shop_url'];
 	}}
-	$upsell_product=explode(",", $upsell_products);
-	$count_upsell=count($upsell_product);
- $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
  ?>
- document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><?php echo $city; ?><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
- 
- 
- <?php 
- for($i=0;$i<$count_upsell; $i++){ 
-$up_p_id=$upsell_product[$i];
- $products = $shopify("GET /admin/products/{$upsell_product[$i]}.json", array('published_status'=>'published'));
-  $upsell_product_id=$products['id'];?> 
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<?php $product_id=$_GET['id'];
+ $shopify = shopify\client($_SESSION['shop_url'], SHOPIFY_APP_API_KEY,$_SESSION['auth_token']);
+$products = $shopify("GET /admin/products/{$product_id}.json", array('published_status'=>'published'));
 
- document.write("<div class='item '><div class='countdiv' style='display:none'></div><div class='product-wrapper product-<?php echo $products['id']; ?>'><div class='listviewcontent'><div class='product-image'><img src='<?php echo $products['image']['src']; ?>' alt='<?php echo $products['title']; ?>' /></div>     		<div class='product-name'><?php echo $products['title']; ?></div></div>      	<div class='listviewcontent2'>         <div class='product-partnum' style='display:none;'><?php echo $products['variants'][0]['sku']; ?></div>  <div class='product-options'>    		<?php if(count($products['variants']) > 1 ) {?>               <select id='product-select-<?php echo $products['id']; ?>' name='id' onchange='getval(<?php echo $upsell_product_id; ?>,this.value);'> <?php foreach($products['variants'] as $variant) {     $vtitle=explode('/',$variant['title']);                   $vsize=$vtitle[0];                ?>                    <option value='<?php echo $variant['id']; ?>'><?php echo $vtitle[0].'- $'.$variant['price'].'USD -'.$vtitle[1];?></option>               <?php   } ?>                 </select>    		<?php } ?>  </div> <div class='product-buy'>      <form method='post' action=''><div class='product-price sale' style=''>$<?php echo $products['variants'][0]['price'] ?>USD</div>      <div class='product-buttons' id='900162372-3542601220'>      <input name='quantity' style='display:none' type='text' value='1' maxlength='5' class='qty'>      <input id='addtocart1' name='addtocart' type='button' value='Add to Cart' class='addtocart-<?php echo $products['id']; ?> addtocart-<?php echo $products['handle']; ?> addtocart-<?php echo $products['product_type']; ?>'  onclick='savecart1(<?php echo $products['variants'][0]['id'];?>,<?php echo $products['id']; ?>);'>        </div></form></div>   		</div>        <div class='cleardiv'></div></div>      </div> ");
+?>
+<h1>EDIT PRODUCT</h1>
+<a href="index.php">Back</a>
+<a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a>
+<form method="POST">
+<label>Product Id</label>
+<input type="text" disabled value="<?php echo $_GET['id']; ?>" name="id"/><br/>
+<label>Product name</label>
+<input type="text" disabled value='<?php echo $products['title']; ?>' name="title"/><br/>
+<input type="hidden" name="body_html"  id="body_html" value='<?php if(is_array($products['body_html'])){ echo json_encode($products['body_html']);} else{ echo $products['body_html']; } ?>' />
+<input type="hidden" name="vendor"  id="vendor"  value='<?php if(is_array($products['vendor'])){ echo json_encode($products['vendor']);} else{ echo $products['vendor']; } ?>'/>
+<input type="hidden" name="product_type"  id="product_type"  value='<?php if(is_array($products['product_type'])){ echo json_encode($products['product_type']);} else{ echo $products['product_type']; } ?>'/>
+<input type="hidden" name="created_at"  id="created_at" value='<?php if(is_array($products['created_at'])){ echo json_encode($products['created_at']);} else{ echo $products['created_at']; } ?>' />
+<input type="hidden" name="updated_at"  id="updated_at" value='<?php if(is_array($products['updated_at'])){ echo json_encode($products['updated_at']);} else{ echo $products['updated_at']; } ?>' />
+<input type="hidden" name="published_at"  id="published_at"  value='<?php if(is_array($products['published_at'])){ echo json_encode($products['published_at']);} else{ echo $products['published_at']; } ?>'/>
+<input type="hidden" name="handle"  id="handle" value='<?php if(is_array($products['handle'])){ echo json_encode($products['handle']);} else{ echo $products['handle']; } ?>' />
+<input type="hidden" name="template_suffix"  id="template_suffix" value='<?php if(is_array($products['template_suffix'])){ echo json_encode($products['template_suffix']);} else{ echo $products['template_suffix']; } ?>' />
+<input type="hidden" name="published_scope"  id="published_scope" value='<?php if(is_array($products['published_scope'])){ echo json_encode($products['published_scope']);} else{ echo $products['published_scope']; } ?>' />
+<input type="hidden" name="tags"  id="tags" value='<?php if(is_array($products['tags'])){ echo json_encode($products['tags']);} else{ echo $products['tags']; } ?>' />
+<input type="hidden" name="variants"  id="variants" value='<?php if(is_array($products['variants'])){ echo json_encode($products['variants']);} else{ echo $products['variants']; } ?>' />
+<input type="hidden" name="options"  id="options" value='<?php if(is_array($products['options'])){ echo json_encode($products['options']);} else{ echo $products['options']; } ?>' />
+<input type="hidden" name="images"  id="images" value='<?php if(is_array($products['images'])){ echo json_encode($products['images']);} else{ echo $products['images']; } ?>' />
+<input type="hidden" name="image"  id="image" value='<?php if(is_array($products['image'])){ echo json_encode($products['image']);} else{ echo $products['image']; } ?>' />
+<label>Upsell Show</label>
+<input type="radio" name="upsell_show" value="0" checked />Yes
+<input type="radio" name="upsell_show" value="1"/>No 
+<br/>
+<label>Title for Upsell</label>
+<input type="text" value='<?php echo $products['title_upsell']; ?>' name="title_upsell"/><br/>
+<label>body for Upsell</label>
+<textarea name="body_upsell"><?php echo $products['body_upsell']; ?></textarea><br/>
+<?php
+$result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
+		if(pg_num_rows($result) > 0){
+			$n_country=	pg_num_rows($result);
+			$i=1;
+			while($row= pg_fetch_array($result)){
+			?>
+				<label>Country</label>
+				<select name="country<?php echo $i; ?>">
+					<option value="Arizona" <?php if($row['country']=="Arizona"){echo "Selected"; } ?>>Arizona</option>
+					<option value="Atlanta" <?php if($row['country']=="Atlanta"){echo "Selected"; } ?>>Atlanta</option>
+					<option value="Baltimore" <?php if($row['country']=="Baltimore"){echo "Selected"; } ?>>Baltimore</option>
+					<option value="Buffalo" <?php if($row['country']=="Buffalo"){echo "Selected"; } ?>>Buffalo</option>
+					<option value="Carolina" <?php if($row['country']=="Carolina"){echo "Selected"; } ?>>Carolina</option>
+					<option value="Chicago" <?php if($row['country']=="Chicago"){echo "Selected"; } ?>>Chicago</option>
+					<option value="Cincinnati" <?php if($row['country']=="Cincinnati"){echo "Selected"; } ?>>Cincinnati</option>
+					<option value="Cleveland" <?php if($row['country']=="Cleveland"){echo "Selected"; } ?>>Cleveland</option>
+					<option value="Dallas" <?php if($row['country']=="Dallas"){echo "Selected"; } ?>>Dallas</option>
+					<option value="Denver" <?php if($row['country']=="Denver"){echo "Selected"; } ?>>Denver</option>
+					<option value="Detroit" <?php if($row['country']=="Detroit"){echo "Selected"; } ?>>Detroit</option>
+					<option value="Green Bay" <?php if($row['country']=="Green Bay"){echo "Selected"; } ?>>Green Bay</option>
+					<option value="Indianapolis" <?php if($row['country']=="Indianapolis"){echo "Selected"; } ?>>Indianapolis</option>
+					<option value="Jacksonville" <?php if($row['country']=="Jacksonville"){echo "Selected"; } ?>>Jacksonville</option>
+					<option value="Kansas City" <?php if($row['country']=="Kansas City"){echo "Selected"; } ?>>Kansas City</option>
+					<option value="Miami" <?php if($row['country']=="Miami"){echo "Selected"; } ?>>Miami</option>
+					<option value="Minnesota" <?php if($row['country']=="Minnesota"){echo "Selected"; } ?>>Minnesota</option>
+					<option value="New England" <?php if($row['country']=="New England"){echo "Selected"; } ?>>New England</option>
+					<option value="New Orleans" <?php if($row['country']=="New Orleans"){echo "Selected"; } ?>>New Orleans</option>
+					<option value="New York" <?php if($row['country']=="New York"){echo "Selected"; } ?>>New York</option>
+					<option value="Oakland" <?php if($row['country']=="Oakland"){echo "Selected"; } ?>>Oakland</option>
+					<option value="Philadelphia" <?php if($row['country']=="Philadelphia"){echo "Selected"; } ?>>Philadelphia</option>
+					<option value="Pittsburgh" <?php if($row['country']=="Pittsburgh"){echo "Selected"; } ?>>Pittsburgh</option>
+					<option value="San Diego" <?php if($row['country']=="San Diego"){echo "Selected"; } ?>>San Diego</option>
+					<option value="San Francisco" <?php if($row['country']=="San Francisco"){echo "Selected"; } ?>>San Francisco</option>
+					<option value="Seattle" <?php if($row['country']=="Seattle"){echo "Selected"; } ?>>Seattle</option>
+					<option value="Washington" <?php if($row['country']=="Washington"){echo "Selected"; } ?>>Washington</option>
+					<option value="Mohali" <?php if($row['country']=="Mohali"){echo "Selected"; } ?>>Mohali(India)</option>
+				</select><br/>
+				<label>Upsell Product IDs(Seprated by ",")</label>
+				<textarea name="upsell_product_id<?php echo $i; ?>" class="upsell_product_id"><?php echo $row['upsell_product']; ?></textarea>
+				<br/>
+				<div class="addnew"></div>	
+			<?php $i++; }	
 
-  
-<?php } ?>
- document.write("</div></div><div style='clear:both'></div><div id='button1' class='popupbottom1' style='float:right'><style>#upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}#upsellclosebtn:hover{float: none;color:#000;text-decoration:none;margin-right:10px;}.upsell_popup_h .item { width: 250px;    display: inline-block;    float: left;}.item .listviewcontent .product-image img { width: 100%;}.product-wrapper-main .item .product-wrapper {    border: 1px solid #dddddd;    float: left;    height: auto;    margin: 10px 6px 0;    padding: 10px 0;    text-align: center;    width: 100%;}#addtocart1 {   background: #000;    padding: 7px;    border: none;    border-radius: 5px;    color: #fff;}</style><a id='upsellclosebtn' href='/checkout' class='upsell_no_thanks'>No Thanks</a><a id='inline' href='/checkout' class='product-modal pm1 cart btn' style='color: rgb(255, 255, 255); margin-bottom: 7px; margin-right: 25px; margin-top: 7px; background-color: rgb(48, 194, 117);float:left'>Checkout</a></div></div></div></div>");
-  $(document).ready(function() {
-        $.fancybox.open([
-        {
-          href : '#cartrelatedproduct',
-          //title : '1st title'
-        }
-        ], {
-          padding : 0   
-        });
-  });
-   $('.product-modal').fancybox({
-    helpers: {
-      overlay: {
-        locked: false
-      }
-    },
-  'afterClose':function () {
-      window.location.href='/checkout';
-    }
-  });
-   function savecart1(variantid,pid1) {
-      var cartpid = new Array(); 
-      var cartcat = new Array(); 
-      var handingoption = new Array();
-      var cartcatnew = new Array(); 
-        var j=0;
-      var k=0;
-        $.ajax({
-            type: 'POST',
-            url: '/cart/add.js', 
-          	dataType: 'text',
-         data: { quantity: 1, 
-                id: variantid },
-       	success: function(response){
-              var response = $.parseJSON(response);
-               var msg='added to your cart';
-                  
-           $('.addtocart-'+pid1).val('Added');
-           window.location.href = "/cart?pop=true";
-        }
-        });
-      } 
-	  function getval(sel,pidd) {
-          $(".addtocart-"+sel).attr("onclick","savecart1 ('"+pidd+"','"+sel+"')");
-      
-     }
-  
+		}
+		else{ $n_country=1;	?>				
+				<label>Country</label>
+				<select name="country1">
+					<option value="Arizona">Arizona</option>
+					<option value="Atlanta">Atlanta</option>
+					<option value="Baltimore">Baltimore</option>
+					<option value="Buffalo">Buffalo</option>
+					<option value="Carolina">Carolina</option>
+					<option value="Chicago">Chicago</option>
+					<option value="Cincinnati">Cincinnati</option>
+					<option value="Cleveland">Cleveland</option>
+					<option value="Dallas">Dallas</option>
+					<option value="Denver">Denver</option>
+					<option value="Detroit">Detroit</option>
+					<option value="Green Bay">Green Bay</option>
+					<option value="Indianapolis">Indianapolis</option>
+					<option value="Jacksonville">Jacksonville</option>
+					<option value="Kansas City">Kansas City</option>
+					<option value="Miami">Miami</option>
+					<option value="Minnesota">Minnesota</option>
+					<option value="New England">New England</option>
+					<option value="New Orleans">New Orleans</option>
+					<option value="New York">New York</option>
+					<option value="Oakland">Oakland</option>
+					<option value="Philadelphia">Philadelphia</option>
+					<option value="Pittsburgh">Pittsburgh</option>
+					<option value="San Diego">San Diego</option>
+					<option value="San Francisco">San Francisco</option>
+					<option value="Seattle">Seattle</option>
+					<option value="Washington">Washington</option>
+					<option value="Mohali">Mohali(India)</option>
+				</select>
+				<br/>
+				<label>Upsell Product IDs(Seprated by ",")</label>
+				<textarea name="upsell_product_id1" class="upsell_product_id"></textarea><br/>
+						<div class="addnew"></div>	
+		<?php }?>
+<input type="hidden" name="n_country" id="n_country" value="<?php echo $n_country; ?>" />		
+<input type="button" id="add_new_country" value="Add New Country" />	
+<input type="submit" name="submit" value="Save"/>
+</form>
+<script>
 
-
+	$("#add_new_country").click(function() {
+		 var eid = parseInt($('.upsell_product_id').length+1);
+			$("div[class^=addnew]:last").after('<label>Country</label><select name="country'+eid+'"><option value="Arizona">Arizona</option><option value="Atlanta">Atlanta</option><option value="Baltimore">Baltimore</option><option value="Buffalo">Buffalo</option><option value="Carolina">Carolina</option><option value="Chicago">Chicago</option><option value="Cincinnati">Cincinnati</option><option value="Cleveland">Cleveland</option>					<option value="Dallas">Dallas</option><option value="Denver">Denver</option>					<option value="Detroit">Detroit</option><option value="Green Bay">Green Bay</option><option value="Indianapolis">Indianapolis</option><option value="Jacksonville">Jacksonville</option><option value="Kansas City">Kansas City</option><option value="Miami">Miami</option>					<option value="Minnesota">Minnesota</option><option value="New England">New England</option><option value="New Orleans">New Orleans</option><option value="New York">New York</option>					<option value="Oakland">Oakland</option><option value="Philadelphia">Philadelphia</option><option value="Pittsburgh">Pittsburgh</option><option value="San Diego">San Diego</option>					<option value="San Francisco">San Francisco</option><option value="Seattle">Seattle</option><option value="Washington">Washington</option><option value="Mohali">Mohali(India)</option></select><br/><label>Upsell Product IDs(Seprated by ",")</label><textarea name="upsell_product_id'+eid+'" class="upsell_product_id"></textarea><br/><div class="addnew"></div>');
+			var n_country=$('#n_country').val();
+		$('#n_country').val(parseInt(n_country)+parseInt(1)); 
+	});
+</script>
