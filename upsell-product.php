@@ -17,6 +17,9 @@ if(pg_num_rows($result) > 0){
 		$upsell_products=$row['upsell_product'];
 		$shop_id=$row['shop_id'];
 		$upsell_show=$row['upsell_show'];		
+		$title_upsell=$row['title_upsell'];		
+		$body_upsell=$row['body_upsell'];		
+			
 	}
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
@@ -28,7 +31,7 @@ if(pg_num_rows($result) > 0){
 	$count_upsell=count($upsell_product);
  $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
  ?>
- document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><?php echo $city; ?><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
+ document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><?php echo $title_upsell; ?><?php echo $body_upsell; ?><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
  
  
  <?php 
