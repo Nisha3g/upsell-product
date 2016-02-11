@@ -37,7 +37,7 @@ $up_p_id=$upsell_product[$i];
  $products = $shopify("GET /admin/products/{$upsell_product[$i]}.json", array('published_status'=>'published'));
  ?> 
 
- document.write("<div class='item '><div class='countdiv' style='display:none'></div><div class='product-wrapper product-<?php echo $products['id']; ?>'><div class='listviewcontent'><div class='product-image'><img src='<?php echo $products['image']['src']; ?>' alt='<?php echo $products['title']; ?>' /></div>     		<div class='product-name'><?php echo $products['title']; ?></div></div>      	<div class='listviewcontent2'>         <div class='product-partnum' style='display:none;'><?php echo $products['variants'][0]['sku']; ?></div>  <div class='product-options'>    		<?php if(count($products['variants']) > 1 ) {?>               <select id='product-select-<?php echo $products['id']; ?>' name='id'>			 <?php foreach($products['variants'] as $variant) {     $vtitle=explode('/',$variant['title']);                   $vsize=$vtitle[0];                ?>                    <option value='<?php echo $variant['id']; ?>'><?php echo $vtitle[0].'- $'.$variant['price'].'USD -'.$vtitle[1];?></option>               <?php   } ?>                 </select>    		<?php } ?>  </div> <div class='product-buy'>      <form method='post' action=''><div class='product-price sale' style=''>$<?php echo $products['variants'][0]['price'] ?>USD</div>      <div class='product-buttons' id='900162372-3542601220'>      <input name='quantity' style='display:none' type='text' value='1' maxlength='5' class='qty'>      <input id='addtocart1' name='addtocart' type='button' value='Add to Cart' class='addtocart-<?php echo $products['id']; ?> addtocart-<?php echo $products['handle']; ?> addtocart-<?php echo $products['product_type']; ?>'  onclick='savecart1(<?php echo $products['variants'][0]['id'];?>,<?php echo $products['id']; ?>);'>        </div></form></div>   		</div>        <div class='cleardiv'></div></div>      </div> ");
+ document.write("<div class='item '><div class='countdiv' style='display:none'></div><div class='product-wrapper product-<?php echo $products['id']; ?>'><div class='listviewcontent'><div class='product-image'><img src='<?php echo $products['image']['src']; ?>' alt='<?php echo $products['title']; ?>' /></div>     		<div class='product-name'><?php echo $products['title']; ?></div></div>      	<div class='listviewcontent2'>         <div class='product-partnum' style='display:none;'><?php echo $products['variants'][0]['sku']; ?></div>  <div class='product-options'>    		<?php if(count($products['variants']) > 1 ) {?>               <select id='product-select-<?php echo $products['id']; ?>' name='id' onchange="getval('product-select-<?php echo $products['id']; ?>',this.value);">			 <?php foreach($products['variants'] as $variant) {     $vtitle=explode('/',$variant['title']);                   $vsize=$vtitle[0];                ?>                    <option value='<?php echo $variant['id']; ?>'><?php echo $vtitle[0].'- $'.$variant['price'].'USD -'.$vtitle[1];?></option>               <?php   } ?>                 </select>    		<?php } ?>  </div> <div class='product-buy'>      <form method='post' action=''><div class='product-price sale' style=''>$<?php echo $products['variants'][0]['price'] ?>USD</div>      <div class='product-buttons' id='900162372-3542601220'>      <input name='quantity' style='display:none' type='text' value='1' maxlength='5' class='qty'>      <input id='addtocart1' name='addtocart' type='button' value='Add to Cart' class='addtocart-<?php echo $products['id']; ?> addtocart-<?php echo $products['handle']; ?> addtocart-<?php echo $products['product_type']; ?>'  onclick='savecart1(<?php echo $products['variants'][0]['id'];?>,<?php echo $products['id']; ?>);'>        </div></form></div>   		</div>        <div class='cleardiv'></div></div>      </div> ");
 
   
 <?php } ?>
@@ -83,7 +83,13 @@ $up_p_id=$upsell_product[$i];
            window.location.href = "/cart?pop=true";
         }
         });
-      }
+      } 
+	  function getval(sel,pidd) {
+         var vv= $("#"+sel).val();
+        var pid= sel.split("-")[2];
+        $(".addtocart-"+pid).attr("onclick","savecart1 ('"+pidd+"','"+pid+"')");
+      
+     }
   
 
 
