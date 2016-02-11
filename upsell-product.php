@@ -1,10 +1,7 @@
 <?php 
-/* $location = json_decode(file_get_contents('http://freegeoip.net/json/'.$_SERVER['HTTP_X_FORWARDED_FOR']),true);
-$country = $location['country_name'];  */
 $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
 $api_key="6c0706c14e72e6376bf58f1b5434cb7b4dc934492207b1b690c1078b6d32c19c";
  $details =json_decode(file_get_contents("http://api.ipinfodb.com/v3/ip-city/?key=$api_key&ip=$ip&format=json"));
-/* print_R($details); */
 $country = $details->cityName;
 require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
