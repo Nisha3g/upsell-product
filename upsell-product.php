@@ -58,6 +58,7 @@ $up_p_id=$upsell_product[$i];
       window.location.href='/checkout';
     }
   });
+  });
    function savecart1(variantid,pid1) {
       var cartpid = new Array(); 
       var cartcat = new Array(); 
