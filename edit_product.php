@@ -4,14 +4,12 @@ require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/conf.php'; 
 require __DIR__.'/style.css'; 
 if(isset($_REQUEST['submit'])){
-	/* print_r($_REQUEST);die(); */
 	$oauth_token=$_SESSION['auth_token'];
-		pg_query($db,"Delete from product_".$oauth_token." where product_id='".$_REQUEST['id']."'");
+	pg_query($db,"Delete from product_".$oauth_token." where product_id='".$_REQUEST['id']."'");
 	for($loop=1; $loop<=$_REQUEST['n_country']; $loop++)
 	{
 		$country  ='country'.$loop;
 		$upsell_product_id  ='upsell_product_id'.$loop;
-		/* echo "INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."')"; */
 		pg_query($db,"INSERT INTO product_".$oauth_token." (shop_id,product_id,upsell_show,country,upsell_product,body_html,vendor,product_type,handle,template_suffix,published_scope,tags,variants,options,images,image,created_at,updated_at,published_at) VALUES ('".$_SESSION['shop_id']."','".$_REQUEST['id']."','".$_REQUEST['upsell_show']."','".$_REQUEST[$country]."','".$_REQUEST[$upsell_product_id]."','".$_REQUEST['body_html']."','".$_REQUEST['vendor']."','".$_REQUEST['product_type']."','".$_REQUEST['handle']."','".$_REQUEST['template_suffix']."','".$_REQUEST['published_scope']."','".$_REQUEST['tags']."','".$_REQUEST['variants']."','".$_REQUEST['options']."','".$_REQUEST['images']."','".$_REQUEST['image']."','".$_REQUEST['created_at']."','".$_REQUEST['updated_at']."','".$_REQUEST['published_at']."')");
 	}
 }
@@ -52,6 +50,10 @@ $products = $shopify("GET /admin/products/{$product_id}.json", array('published_
 <input type="radio" name="upsell_show" value="0" checked />Yes
 <input type="radio" name="upsell_show" value="1"/>No 
 <br/>
+<label>Title for Upsell</label>
+<input type="text" value='<?php echo $products['title_upsell']; ?>' name="title_upsell"/><br/>
+<label>body for Upsell</label>
+<textarea name="body_upsell"><?php echo $products['body_upsell']; ?></textarea><br/>
 <?php
 $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
 		if(pg_num_rows($result) > 0){
