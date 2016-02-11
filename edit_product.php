@@ -51,9 +51,14 @@ $products = $shopify("GET /admin/products/{$product_id}.json", array('published_
 <input type="radio" name="upsell_show" value="1"/>No 
 <br/><?php
 $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where product_id='".$_REQUEST['id']."'");
+		$title_upsell='';$body_upsell='';
 		if(pg_num_rows($result) > 0){
 			$n_country=	pg_num_rows($result);
-			$i=1;	while($row= pg_fetch_array($result)){$title_upsell=$row['title_upsell'];$body_upsell=$row['body_upsell'];}?>
+			$i=1;
+			while($row= pg_fetch_array($result)){
+					$title_upsell=$row['title_upsell'];
+					$body_upsell=$row['body_upsell'];
+				}?>
 <label>Title for Upsell</label>
 <input type="text" value='<?php echo $title_upsell; ?>' name="title_upsell"/><br/>
 <label>body for Upsell</label>
