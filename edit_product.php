@@ -58,7 +58,8 @@ $result = pg_query($db,"SELECT * from product_".$_SESSION['auth_token']." where 
 			while($row= pg_fetch_array($result)){
 					$title_upsell=$row['title_upsell'];
 					$body_upsell=$row['body_upsell'];
-				}?>
+				}
+		}?>
 <label>Title for Upsell</label>
 <input type="text" value='<?php echo $title_upsell; ?>' name="title_upsell"/><br/>
 <label>body for Upsell</label>
