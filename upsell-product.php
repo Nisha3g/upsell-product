@@ -8,6 +8,7 @@ require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
 require __DIR__.'/conf.php';
 require __DIR__.'/fancybox/fancybox.js';
+require __DIR__.'/fancybox/fancybox.css';
 $token = $_REQUEST['access_token'];
 $product_id = $_REQUEST['product_id'];
 $result = pg_query($db,"SELECT * from product_{$token} where product_id='{$product_id}' and upsell_show= '0' and country='{$country}'");
@@ -44,15 +45,15 @@ $up_p_id=$upsell_product[$i];
 <?php } ?>
  document.write("</div></div></div><div style='clear:both'></div><div id='button1' class='popupbottom1' style='float:right'><a id='upsellclosebtn' href='/checkout' class='upsell_no_thanks'>No Thanks</a><a id='inline' href='/checkout' class='product-modal pm1 cart btn' style='color: rgb(255, 255, 255); margin-bottom: 7px; margin-right: 25px; margin-top: 7px; background-color: rgb(48, 194, 117);float:left'>Checkout</a></div></div></div></div>");
   $(document).ready(function() {
-	  $('#AddToCart').click(funtion(){
-        $.fancybox.open([
-        {
-          href : '#cartrelatedproduct',
-          //title : '1st title'
-        }
-        ], {
-          padding : 0   
-        });
+	$( "#AddToCart" ).click(function() {
+			$.fancybox.open([
+			{
+			  href : '#cartrelatedproduct',
+			  //title : '1st title'
+			}
+			], {
+			  padding : 0   
+			});
         });
   });
    $('.product-modal').fancybox({
