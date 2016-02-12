@@ -90,6 +90,31 @@ $up_p_id=$upsell_product[$i];
           $(".addtocart-"+sel).attr("onclick","savecart1 ('"+pidd+"','"+sel+"')");
       
      }
+	 $(document).ready(function(){ 
+	var countdiv =parseInt($('.countdiv').length);
+	//alert(countdiv);
+	if(countdiv == 1)
+	{
+		$('.product-wrapper-main').addClass('one');
+	}
+	else if(countdiv == 2)
+	{
+		$('.product-wrapper-main').addClass('two');
+	}
+	else if(countdiv == 3)
+	{
+		$('.product-wrapper-main').addClass('three');
+	}
+	else if(countdiv == 4)
+	{
+		$('.product-wrapper-main').addClass('four');
+	}
+	else if(countdiv > 4)
+	{
+		$('.product-wrapper-main').addClass('listview');
+		
+	}
+	 });
   
 
 
