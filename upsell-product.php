@@ -113,5 +113,5 @@ $up_p_id=$upsell_product[$i];
 	}
 	 });
   
-document.write("<?php require __DIR__.'/style.css'; ?>");
+document.write("<?php trim(require __DIR__.'/style.css'); ?>");
 
