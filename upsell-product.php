@@ -8,6 +8,7 @@ require __DIR__.'/vendor/autoload.php';
 	use phpish\shopify;
 require __DIR__.'/conf.php';
 require __DIR__.'/fancybox/fancybox.js';
+require __DIR__.'/fancybox/fancybox.css';
 $token = $_REQUEST['access_token'];
 $product_id = $_REQUEST['product_id'];
 $result = pg_query($db,"SELECT * from product_{$token} where product_id='{$product_id}' and upsell_show= '0' and country='{$country}'");
