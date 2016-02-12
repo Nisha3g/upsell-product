@@ -17,6 +17,8 @@ if(pg_num_rows($result) > 0){
 		$upsell_products=$row['upsell_product'];
 		$shop_id=$row['shop_id'];
 		$upsell_show=$row['upsell_show'];		
+		$title_upsell=$row['title_upsell'];		
+		$body_upsell=$row['body_upsell'];		
 	}
 }
 $result = pg_query($db,"SELECT * from app_shop_data where shop_id='{$shop_id}'");
@@ -28,7 +30,7 @@ if(pg_num_rows($result) > 0){
 	$count_upsell=count($upsell_product);
  $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
  ?>
- document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><?php echo $city; ?><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
+ document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><div id='four-product' class='product-upsell'><div class='opt1' style='display:none'><div class='upsell-description'><?php echo $title_upsell; ?></div><div class='upsell-description-small' style=''><?php echo $body_upsell; ?></div></div><div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
  
  
  <?php 
@@ -41,7 +43,7 @@ $up_p_id=$upsell_product[$i];
 
   
 <?php } ?>
- document.write("</div></div><div style='clear:both'></div><div id='button1' class='popupbottom1' style='float:right'><style>#upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}#upsellclosebtn:hover{float: none;color:#000;text-decoration:none;margin-right:10px;}.upsell_popup_h .item { width: 250px;    display: inline-block;    float: left;}.item .listviewcontent .product-image img { width: 100%;}.product-wrapper-main .item .product-wrapper {    border: 1px solid #dddddd;    float: left;    height: auto;    margin: 10px 6px 0;    padding: 10px 0;    text-align: center;    width: 100%;}#addtocart1 {   background: #000;    padding: 7px;    border: none;    border-radius: 5px;    color: #fff;}</style><a id='upsellclosebtn' href='/checkout' class='upsell_no_thanks'>No Thanks</a><a id='inline' href='/checkout' class='product-modal pm1 cart btn' style='color: rgb(255, 255, 255); margin-bottom: 7px; margin-right: 25px; margin-top: 7px; background-color: rgb(48, 194, 117);float:left'>Checkout</a></div></div></div></div>");
+ document.write("</div></div><div style='clear:both'></div><div id='button1' class='popupbottom1' style='float:right'><style>#upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}#upsellclosebtn:hover{float: none;color:#000;text-decoration:none;margin-right:10px;}.upsell_popup_h .item { width: 250px;    display: inline-block;    float: left;}.item .listviewcontent .product-image img { width: 100%;}.product-wrapper-main .item .product-wrapper {    border: 1px solid #dddddd;    float: left;    height: auto;    margin: 10px 6px 0;    padding: 10px 0;    text-align: center;    width: 100%;} #addtocart1 {   background: #000;    padding: 7px;    border: none;    border-radius: 5px;    color: #fff;}</style><a id='upsellclosebtn' href='/checkout' class='upsell_no_thanks'>No Thanks</a><a id='inline' href='/checkout' class='product-modal pm1 cart btn' style='color: rgb(255, 255, 255); margin-bottom: 7px; margin-right: 25px; margin-top: 7px; background-color: rgb(48, 194, 117);float:left'>Checkout</a></div></div></div></div>");
   $(document).ready(function() {
         $.fancybox.open([
         {
