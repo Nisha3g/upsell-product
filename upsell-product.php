@@ -120,30 +120,31 @@ $up_p_id=$upsell_product[$i];
 	 	if(windowWidth > 767){
   $('.mobilecontent').hide();
 		$('.upsell_popup_h').show();}
-		else{
-			$('#relCarousel1').owlCarousel({
-	 responsiveClass:true,
-          responsive : {
-                  0 : {
-                          items: 1
-                          
-                  },
-                  // breakpoint from 480 up 
-                  480 : {
-                            items: 2,
-                  },
-                  // breakpoint from 768 up
-                  768 : {
-                            items: 3
-                  }
-              },
-            
-        nav : true
-      });
-			
-  $('.mobilecontent').show();
+		else if(windowWidth > 450 && windowWidth < 768){
+	$('.mobilecontent').show();
   $('.upsell_popup_h').hide();
-		}
+		_items = 2;
+		$("#relCarousel1").owlCarousel({
+			items: _items,
+			nav: true,
+		});
+	} else if(windowWidth < 450){
+		$('.mobilecontent').show();
+		$('.upsell_popup_h').hide();
+		_items = 1;
+		$("#relCarousel1").owlCarousel({
+          items: _items,
+			nav: true,
+		});
+	} else {
+		$('.mobilecontent').show();
+		$('.upsell_popup_h').hide();
+		_items = 4;
+		$("#relCarousel1").owlCarousel({
+			items: _items,
+			nav: true,
+		});
+	}
 	
 	
 	function showRows() { 
