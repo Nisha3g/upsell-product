@@ -121,14 +121,9 @@ $up_p_id=$upsell_product[$i];
   $('.mobilecontent').hide();
 		$('.upsell_popup_h').show();}
 		else{
-  $('.mobilecontent').show();
-  $('.upsell_popup_h').hide();
-		}
-	
-	$('#relCarousel1').owlCarousel({
+			$('#relCarousel1').owlCarousel({
      items : 4,
           responsive : {
-                  // breakpoint from 0 up
                   0 : {
                           items: 1
                           
@@ -145,6 +140,12 @@ $up_p_id=$upsell_product[$i];
             
         nav : true
       });
+			
+  $('.mobilecontent').show();
+  $('.upsell_popup_h').hide();
+		}
+	
+	
 	function showRows() { 
 	  $('.jsRow').fadeIn();
 	}
