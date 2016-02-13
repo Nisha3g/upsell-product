@@ -122,7 +122,7 @@ $up_p_id=$upsell_product[$i];
 		$('.upsell_popup_h').show();}
 		else{
 			$('#relCarousel1').owlCarousel({
-     items : 4,
+	 responsiveClass:true,
           responsive : {
                   0 : {
                           items: 1
