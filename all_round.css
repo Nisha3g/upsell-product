@@ -581,14 +581,14 @@ max-width:100%;
 width: 100% !important;
 }
   .mobilecontent .owl-next { right:0px; 
-   background: url('http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-next.png') center center/25px no-repeat;
+   background: url('https://cloud.githubusercontent.com/assets/16936820/13026550/82a0dca4-d251-11e5-8b52-ad65e83bce46.png') center center/25px no-repeat;
   text-transform:captilize;
      text-indent: -9999px;
   width: 60px;
   height: 40px;
   } 
   .mobilecontent .owl-prev { 
-   background: url('http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-prev.png') center center/25px no-repeat;
+   background: url('https://cloud.githubusercontent.com/assets/16936820/13026535/1c8d830e-d251-11e5-8e45-5454bf3f3dc7.png') center center/25px no-repeat;
   text-transform:captilize;
      text-indent: -9999px;
   width: 60px;
