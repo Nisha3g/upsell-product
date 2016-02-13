@@ -116,7 +116,15 @@ $up_p_id=$upsell_product[$i];
 		$('.product-wrapper-main').addClass('listview');
 		
 	}
-	
+	 var windowWidth =$(window).width();
+	 	if(windowWidth > 767){
+  $('.mobilecontent').hide();
+		$('.upsell_popup_h').show();}
+		else{
+				if(windowWidth > 767){
+  $('.mobilecontent').show();
+  $('.upsell_popup_h').hide();
+		}
 	
 	$('#relCarousel1').owlCarousel({
      items : 4,
@@ -169,7 +177,7 @@ $up_p_id=$upsell_product[$i];
 			nav: true,
 		});
 	} else if(windowWidth > 450 && windowWidth < 768){
-		$('.mobilecontent').show();
+	$('.mobilecontent').show();
   $('.upsell_popup_h').hide();
 		_items = 2;
 		$("#relCarousel1").owlCarousel({
