@@ -603,9 +603,13 @@ width: 100% !important;
   text-indent: -9999px;
   width: 60px;
   height: 40px;
+  float:left;
 }
 .owl-theme .owl-controls {
-  display: block !important;
+    display: block !important;
+    margin-top: -50%;
+    position: absolute;
+    width: 100%;
 }
 .owl-theme .owl-next {
   background: transparent url("http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-next.png") center center/25px no-repeat;
@@ -613,6 +617,7 @@ width: 100% !important;
   height: 40px;
   text-indent: -9999px;
   right: 0px;
+  float:right;
 }
 }
 .template-index .owl-prev {
