@@ -121,29 +121,30 @@ $up_p_id=$upsell_product[$i];
   $('.mobilecontent').hide();
 		$('.upsell_popup_h').show();}
 		else if(windowWidth > 450 && windowWidth < 768){
-	$('.mobilecontent').show();
-  $('.upsell_popup_h').hide();
+	
 		_items = 2;
 		$("#relCarousel1").owlCarousel({
 			items: _items,
 			nav: true,
 		});
-	} else if(windowWidth < 450){
 		$('.mobilecontent').show();
 		$('.upsell_popup_h').hide();
+	} else if(windowWidth < 450){
+		
 		_items = 1;
 		$("#relCarousel1").owlCarousel({
           items: _items,
 			nav: true,
-		});
-	} else {
-		$('.mobilecontent').show();
+		});$('.mobilecontent').show();
 		$('.upsell_popup_h').hide();
+	} else {
+		
 		_items = 4;
 		$("#relCarousel1").owlCarousel({
 			items: _items,
 			nav: true,
-		});
+		});$('.mobilecontent').show();
+		$('.upsell_popup_h').hide();
 	}
 	
 	
