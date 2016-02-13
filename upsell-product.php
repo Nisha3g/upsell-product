@@ -30,7 +30,7 @@ if(pg_num_rows($result) > 0){
 	$count_upsell=count($upsell_product);
  $shopify = shopify\client($shop_url, SHOPIFY_APP_API_KEY,$token);
  ?>
- document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><div id='four-product' class='product-upsell'><div class='opt1' ><div class='upsell-description'><?php echo $title_upsell; ?></div><div class='upsell-description-small' style=''><?php echo $body_upsell; ?></div></div><div class='hidd mobilecontent' style='display:none'><div  id='relCarousel1' class='container jsCollection row-store-collection relCarousel_1'><?php for($i=0;$i<$count_upsell; $i++){$up_p_id=$upsell_product[$i]; $products = $shopify("GET /admin/products/{$upsell_product[$i]}.json", array('published_status'=>'published'));  $upsell_product_id=$products['id'];?> <div class='col-md-3 col-sm-3 col-xs-12'> <div class='product_image'>   <center>   		<img style='width:auto;' src='<?php echo $products['image']['src']; ?>' /></center></div>     <div class='product-name1' style='text-align:center'><?php echo $products['title']; ?></div>	<div class='product-partnum'><?php echo $products['variants'][0]['sku']; ?></div> 	<div class='product-options' style='text-align:center;'>     <select id='product-select-<?php echo $products['id']; ?>' name='id' onchange='getval(<?php echo $upsell_product_id; ?>,this.value);'> <?php foreach($products['variants'] as $variant) {     $vtitle=explode('/',$variant['title']);                   $vsize=$vtitle[0];                ?>                    <option value='<?php echo $variant['id']; ?>'><?php echo $vtitle[0].'- $'.$variant['price'].'USD -'.$vtitle[1];?></option>               <?php   } ?>                 </select>   	</div>     <div class='product-buy' style='text-align:center;'><form method='post' action=''><div class='product-price sale' style=''><?php echo $products['variants'][0]['price'] ?></div><div class='product-buttons' id='900162372-3542601220'><input name='quantity' style='display:none' type='text' value='1' maxlength='5' class='qty'><input id='addtocart1' name='addtocart' type='button' value='Add to Cart' class='addtocart-<?php echo $products['id']; ?> addtocart-<?php echo $products['handle']; ?> addtocart-<?php echo $products['product_type']; ?>'  onclick='savecart1(<?php echo $products['variants'][0]['id'];?>,<?php echo $products['id']; ?>);'>  </div></form></div></div><?php  } ?>   </div> </div> <div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
+ document.write("<div id='cartrelatedproduct' style='display:none'><a class='fancybox-close1' href='/cart'></a><div class='popup'><div class='content'><div id='four-product' class='product-upsell'><div class='opt1' ><div class='upsell-description'><?php echo $title_upsell; ?></div><div class='upsell-description-small' style=''><?php echo $body_upsell; ?></div></div><div class='hidd mobilecontent' style='display:none'><div  id='relCarousel1' class='container jsCollection row-store-collection relCarousel_1'><?php for($i=0;$i<$count_upsell; $i++){$up_p_id=$upsell_product[$i]; $products = $shopify("GET /admin/products/{$upsell_product[$i]}.json", array('published_status'=>'published'));  $upsell_product_id=$products['id'];?> <div class='col-md-3 col-sm-3 col-xs-12'> <div class='product_image'>   <center>   		<img style='width:auto;' src='<?php echo $products['image']['src']; ?>' /></center></div>     <div class='product-name1' style='text-align:center'><?php echo $products['title']; ?></div>	<div class='product-partnum'><?php echo $products['variants'][0]['sku']; ?></div> 	<div class='product-options' style='text-align:center;'>     <select id='product-select-<?php echo $products['id']; ?>' name='id' onchange='getval(<?php echo $upsell_product_id; ?>,this.value);'> <?php foreach($products['variants'] as $variant) {     $vtitle=explode('/',$variant['title']);                   $vsize=$vtitle[0];                ?>                    <option value='<?php echo $variant['id']; ?>'><?php echo $vtitle[0].'- $'.$variant['price'].'USD -'.$vtitle[1];?></option>               <?php   } ?>                 </select>   	</div>     <div class='product-buy' style='text-align:center;'><form method='post' action=''><div class='product-price sale' style=''><?php echo $products['variants'][0]['price'] ?></div><div class='product-buttons' id='900162372-3542601220'><input name='quantity' style='display:none' type='text' value='1' maxlength='5' class='qty'><input id='addtocart1' name='addtocart' type='button' value='Add to Cart' class='addtocart-<?php echo $products['id']; ?> addtocart-<?php echo $products['handle']; ?> addtocart-<?php echo $products['product_type']; ?>'  onclick='savecart1(<?php echo $products['variants'][0]['id'];?>,<?php echo $products['id']; ?>);'>  </div></form></div></div><?php  } ?>   </div> </div><div> <div class='upsell_popup_h'><p id='country-name'></p><div class='product-wrapper-main'>");
  
  
  <?php 
@@ -159,20 +159,28 @@ $up_p_id=$upsell_product[$i];
 	 });
   $(window).on('resize', function(event){
   var windowWidth =$(window).width();
+/*   $('.mobilecontent').show();
+  $('.upsell_popup_h').hide(); */
 	var _items = 10;
 	if(windowWidth > 767){
+		  $('.mobilecontent').hide();
+  $('.upsell_popup_h').show();
 		_items = 2;
 		$("#relCarousel1").owlCarousel({
 			items: _items,
 			nav: true,
 		});
 	} else if(windowWidth > 450 && windowWidth < 768){
+		  $('.mobilecontent').show();
+  $('.upsell_popup_h').hide();
 		_items = 2;
 		$("#relCarousel1").owlCarousel({
 			items: _items,
 			nav: true,
 		});
 	} else if(windowWidth < 450){
+		  $('.mobilecontent').show();
+  $('.upsell_popup_h').hide();
 		_items = 1;
 		$("#relCarousel1").owlCarousel({
           items: _items,
