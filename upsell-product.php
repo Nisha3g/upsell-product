@@ -144,6 +144,9 @@ $up_p_id=$upsell_product[$i];
 		}		
 	}); */
 	 });
+	$(window).on('load', function(){
+		iniOwl('#relCarousel1');
+	});
 	function iniOwl(container){
 		$(container).owlCarousel({
 			items : 4,
