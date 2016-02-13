@@ -121,7 +121,6 @@ $up_p_id=$upsell_product[$i];
   $('.mobilecontent').hide();
 		$('.upsell_popup_h').show();}
 		else{
-				if(windowWidth > 767){
   $('.mobilecontent').show();
   $('.upsell_popup_h').hide();
 		}
