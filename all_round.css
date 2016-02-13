@@ -599,7 +599,7 @@ width: 100% !important;
 @media screen and (max-width:767px) {
   
 .owl-theme .owl-prev {
-  background: url('http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-prev.png') center center/25px no-repeat;
+  background: url('https://cloud.githubusercontent.com/assets/16936820/13026535/1c8d830e-d251-11e5-8e45-5454bf3f3dc7.png') center center/25px no-repeat;
   text-indent: -9999px;
   width: 60px;
   height: 40px;
@@ -612,7 +612,7 @@ width: 100% !important;
     width: 100%;
 }
 .owl-theme .owl-next {
-  background: transparent url("http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-next.png") center center/25px no-repeat;
+  background: transparent url("https://cloud.githubusercontent.com/assets/16936820/13026550/82a0dca4-d251-11e5-8b52-ad65e83bce46.png") center center/25px no-repeat;
   width: 60px;
   height: 40px;
   text-indent: -9999px;
@@ -621,7 +621,7 @@ width: 100% !important;
 }
 }
 .template-index .owl-prev {
-  background: url('http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-prev.png') center center/25px no-repeat;
+  background: url('https://cloud.githubusercontent.com/assets/16936820/13026535/1c8d830e-d251-11e5-8e45-5454bf3f3dc7.png') center center/25px no-repeat;
  text-indent: -9999px;
   width: 60px;
   height: 40px;
@@ -631,7 +631,7 @@ width: 100% !important;
   display: block !important;
 }
 .template-index .owl-next {
-  background: transparent url("http://cdn.shopify.com/s/files/1/0742/6509/t/44/assets/arrow-next.png") center center/25px no-repeat;
+  background: transparent url("https://cloud.githubusercontent.com/assets/16936820/13026550/82a0dca4-d251-11e5-8b52-ad65e83bce46.png") center center/25px no-repeat;
   width: 60px;
   height: 40px;
   text-indent: -9999px;
