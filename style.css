@@ -26,10 +26,11 @@ label {
     width: 25%;
 }
 input, select, textarea {
-    margin: 20px 0;
-    width: 30%;
+  margin: 0;
+  padding: 1%;
+  width: 100%;
 }
-input[type="radio"], input[type="submit"] {
+input[type="radio"], input[type="submit"] , input[type="button"] {
   width:auto
 }
 #upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}
