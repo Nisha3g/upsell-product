@@ -57,11 +57,11 @@
 	?>
 		<div class="maintable">
 		<h1>PRODUCTS</h1>
-		<div class="pitem pcount phead" style="border-top:1px solid #fff;"><b>S.No.</b></div>
-			<div class="pid pitem phead" style="border-top:1px solid #fff;"><b>Product ID</b></div>
-			<div class="ptitle pitem phead" style="border-top:1px solid #fff;"><b>Product Name</b></div>
-			<div class="pedit pitem phead" style="border-top:1px solid #fff;"><b>Action</b></div>
-			<div style="clear:both" style="border-top:1px solid #fff;"></div>
+		<div class="pitem pcount phead" style="border-top:1px solid #ccc;"><b>S.No.</b></div>
+			<div class="pid pitem phead" style="border-top:1px solid #ccc;"><b>Product ID</b></div>
+			<div class="ptitle pitem phead" style="border-top:1px solid #ccc;"><b>Product Name</b></div>
+			<div class="pedit pitem phead" style="border-top:1px solid #ccc;"><b>Action</b></div>
+			<div style="clear:both" style="border-top:1px solid #ccc;"></div>
 		<?php 
 		$count=1;
 		foreach($products as $product){?>
