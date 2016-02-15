@@ -10,13 +10,17 @@ body{font-family:arial;}
     background:#fff none repeat scroll 0 0;
 }
 .pedit a {
-  background: #000 none repeat scroll 0 0;
-  box-shadow: 6px 5px #ccc;
-  color: #479ccf;
-  font-weight: bold;
-  padding: 4% 35%;
-  text-decoration: none;
-}.pcount, .pedit {
+    background: #454545 none repeat scroll 0 0;
+    border-bottom: 4px solid #000;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    margin: 1%;
+    padding: 8px 25px;
+    text-decoration: none;
+}
+.pcount, .pedit {
   width: 10%;
 }
 label {
