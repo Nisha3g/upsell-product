@@ -3,10 +3,11 @@ body{font-family:arial;}
 .pcount{width:10%;}
 .pitem{ border-style: none solid solid;
     border-width: medium 1px 1px;
+    border-color:#ccc;
     float: left;
     padding: 1%;
     width: 32%;
-    background:#deffbc none repeat scroll 0 0;
+    background:#fff none repeat scroll 0 0;
 }
 .pedit a {
   background: #000 none repeat scroll 0 0;
@@ -94,6 +95,6 @@ input[type="radio"], input[type="submit"] {
   text-overflow:'';
 }
 .phead {
-  background: #5f8d3e none repeat scroll 0 0 !important;
+  background: #479ccf  none repeat scroll 0 0 !important;
 }
 </style>
