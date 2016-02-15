@@ -23,7 +23,7 @@ label {
     clear: both;
     float: left;
     margin: 20px 0;
-    width: 25%;
+    width: 100%;
 }
 input, select, textarea {
   margin: 0;
@@ -31,7 +31,8 @@ input, select, textarea {
   width: 100%;
 }
 input[type="radio"], input[type="submit"] , input[type="button"] {
-  width:auto
+  width:auto;
+  margin:1%;
 }
 #upsellclosebtn{float: none; color:#000;text-decoration:underline;margin-right:10px;}
 #upsellclosebtn:hover{float: none;color:#000;text-decoration:none;margin-right:10px;}
