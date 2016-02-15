@@ -1,13 +1,25 @@
 <style>
 body{font-family:arial;}
 .pcount{width:10%;}
-.pitem{ border-style: none solid solid;
-    border-width: medium 1px 1px;
-    border-color:#ccc;
-    float: left;
-    padding: 1%;
-    width: 32%;
-    background:#fff none repeat scroll 0 0;
+.pitem {
+  background: #fff none repeat scroll 0 0;
+  border-color: #ccc;
+  border-style: none solid solid;
+  border-width: medium 1px 1px;
+  float: left;
+  line-height: 30px;
+  padding: 1%;
+  width: 32%;
+}
+.pedit.pitem.phead {
+  line-height: 30px;
+  padding: 1%;
+  text-align: left;
+}
+.pedit.pitem {
+  line-height: 8px;
+  padding: 6.5px 1%;
+  text-align: center;
 }
 .pedit a {
     background: #454545 none repeat scroll 0 0;
