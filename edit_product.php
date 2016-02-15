@@ -26,7 +26,7 @@ $products = $shopify("GET /admin/products/{$product_id}.json", array('published_
 
 ?>
 <h1>EDIT PRODUCT</h1>
-<a href="index.php">Back</a>
+<a href="index.php" class="black_link">Back</a>
 <?php /* <a href="upsell-product.php?access_token=<?php echo $_SESSION['auth_token']; ?>&product_id=<?php echo $_REQUEST['id'];?>">Preview</a> */?>
 <form method="POST">
 <label>Product Id</label>
