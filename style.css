@@ -9,7 +9,7 @@ body{font-family:arial;}
     width: 32%;
     background:#fff none repeat scroll 0 0;
 }
-.pedit a {
+.pedit a ,.black_link{
   background: #000 none repeat scroll 0 0;
   box-shadow: 6px 5px #ccc;
   color: #479ccf;
