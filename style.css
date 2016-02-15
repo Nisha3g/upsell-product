@@ -11,10 +11,11 @@ body{font-family:arial;}
 }
 .pedit a {
   background: #000 none repeat scroll 0 0;
-  color: #fff;
+  box-shadow: 6px 5px #ccc;
+  color: #479ccf;
+  font-weight: bold;
   padding: 4% 35%;
   text-decoration: none;
-  font-weight:bold;
 }.pcount, .pedit {
   width: 10%;
 }
